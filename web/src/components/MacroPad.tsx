@@ -23,6 +23,7 @@ function TalkKey({ speech }: { speech: Speech }) {
     return (
       <button
         className="pad-key disabled"
+        data-key="talk"
         style={{ "--accent": "#e8578a" } as React.CSSProperties}
         title="Voice needs Chrome/Edge/Safari over HTTPS or localhost"
         disabled
@@ -36,6 +37,7 @@ function TalkKey({ speech }: { speech: Speech }) {
   return (
     <button
       className={`pad-key talk ${speech.listening ? "listening" : ""}`}
+      data-key="talk"
       style={{ "--accent": "#e8578a" } as React.CSSProperties}
       onPointerDown={startTalk}
       onPointerUp={stopTalk}
@@ -64,6 +66,7 @@ function PadKey({
   return (
     <button
       className={`pad-key ${dimmed ? "dimmed" : ""}`}
+      data-key={def.id}
       style={{ "--accent": def.accent } as React.CSSProperties}
       onClick={() => dispatch(def.action)}
       title={def.sub}

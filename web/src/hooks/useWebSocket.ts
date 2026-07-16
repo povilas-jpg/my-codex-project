@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { ClientMessage, ServerMessage } from "../../../shared/protocol";
 
 export type Listener = (msg: ServerMessage) => void;
 
+/** Stable across renders — safe to use in effect deps. */
 export interface PadSocket {
-  connected: boolean;
   send: (msg: ClientMessage) => void;
   /** Subscribe to every server message; returns an unsubscribe fn. */
   subscribe: (fn: Listener) => () => void;
@@ -16,7 +16,7 @@ function wsUrl(): string {
   return `${proto}://${location.host}/ws${token ? `?token=${encodeURIComponent(token)}` : ""}`;
 }
 
-export function useWebSocket(): PadSocket {
+export function useWebSocket(): { connected: boolean; socket: PadSocket } {
   const [connected, setConnected] = useState(false);
   const wsRef = useRef<WebSocket | null>(null);
   const listenersRef = useRef(new Set<Listener>());
@@ -61,15 +61,19 @@ export function useWebSocket(): PadSocket {
     };
   }, []);
 
-  const send = useCallback((msg: ClientMessage) => {
-    const ws = wsRef.current;
-    if (ws && ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify(msg));
-  }, []);
+  const socket = useMemo<PadSocket>(
+    () => ({
+      send: (msg) => {
+        const ws = wsRef.current;
+        if (ws && ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify(msg));
+      },
+      subscribe: (fn) => {
+        listenersRef.current.add(fn);
+        return () => listenersRef.current.delete(fn);
+      },
+    }),
+    [],
+  );
 
-  const subscribe = useCallback((fn: Listener) => {
-    listenersRef.current.add(fn);
-    return () => listenersRef.current.delete(fn);
-  }, []);
-
-  return { connected, send, subscribe };
+  return { connected, socket };
 }

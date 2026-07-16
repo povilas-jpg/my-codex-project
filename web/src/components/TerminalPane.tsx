@@ -40,6 +40,8 @@ export const TerminalPane = forwardRef<TerminalHandle, { socket: PadSocket }>(
       term.open(host);
       fit.fit();
       termRef.current = term;
+      // Exposed for e2e assertions (read the buffer, not the DOM).
+      (window as unknown as Record<string, unknown>).__term = term;
 
       const sendResize = () => {
         fit.fit();

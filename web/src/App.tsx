@@ -10,7 +10,7 @@ import { useWebSocket } from "./hooks/useWebSocket";
 import { MODEL_CYCLE, type PadAction } from "./keys";
 
 export function App() {
-  const socket = useWebSocket();
+  const { connected, socket } = useWebSocket();
   const termRef = useRef<TerminalHandle>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
@@ -163,7 +163,7 @@ export function App() {
           </div>
         </div>
         <StatusLedBar status={status} detail={detail} />
-        <span className={`conn-dot ${socket.connected ? "on" : "off"}`} title={socket.connected ? "connected" : "reconnecting…"} />
+        <span className={`conn-dot ${connected ? "on" : "off"}`} title={connected ? "connected" : "reconnecting…"} />
       </header>
 
       <main className="main">
@@ -179,8 +179,8 @@ export function App() {
           onClose={() => setChatsOpen(false)}
           searchInputRef={searchInputRef}
         />
-        {!socket.connected && <div className="banner reconnect">reconnecting…</div>}
-        {status === "exited" && socket.connected && (
+        {!connected && <div className="banner reconnect">reconnecting…</div>}
+        {status === "exited" && connected && (
           <div className="banner exited">claude exited — press 🆕 New chat to relaunch</div>
         )}
         {speech.listening && (
