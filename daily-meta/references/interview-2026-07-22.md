@@ -24,3 +24,18 @@ R5:
 - ActionCOACH (417656152966870): active=false
 - UnoSol (285905716159639): targets.cpl=6, note "B2C 5-6 EUR, B2B iki 10 EUR pagal kampanijos segmenta"; [leads]
 - Iosomo (857146253775803): active=false
+SWEEP (30d spend, gyvi be targetu):
+Senoji baldine 729931468178542 ~227/d; Explorway 782569629984808 ~36/d; muzikiniszaidimas 908926051206165 ~32/d;
+WallMountFor 1504602114646206 ~30/d; Hotfiks 3925670797662674 ~28/d; Vaiku Pasaulis Httpool 988273141900552 ~28/d;
+AJ events 1267715865569221 ~22/d; fotoPro 651161233548858 ~21/d; Centro odontologai 25540421272268369 ~20/d;
+WiseTeam 3398945290190889 ~18/d; U&L 722544149005388 ~17/d; Groomy 1632282691138734 ~15/d; Covers 541603778283201 ~15/d;
+Tomas Tamoshius Sp 2960277294193264 ~13/d; VisitSiauliai Httpool 348817563870470 ~12/d; annika 625358556130224 ~10/d;
+Stogo Konstrukcija 419644914203233 ~10/d; Arena Pizza 1041865527791638 ~10/d; Kambo 359474156002585 ~9/d;
+Deguva 1071311104506111 ~8/d; Rumsiskiu baldai 845476730453855 ~7/d; Arthangers 1612571132792898 ~7/d;
+Rimantas Steponavicius 2117918399040782 ~4/d; AutoPRO 440135393832783 ~2.5/d
+TUSTI (30d): LULULU, ADMEN, PRO sprendimai savas, Juolab, O kodel ne x2, Mamos diena, Jonas Vinduer x2, Pupa Supa,
+Manogarantijos, Fi Clinica x2, GHS main, Samsonas, Hill Garden, Migla, Timy Cars, PROSPECTORS, Ishoro, Tutum,
+Chase Calm, Neoreklama, VisitSiauliai pagr., BerlinMonroe, Flori 2, Capital Marine, Elegant Line, doup, Svenceles,
+Azuolu namai OLD, ndt, Audrafestival, HLC plus, TWE Httpool, Premium kemperiai, Medzio dizainas, VDC, Ambalai,
+RonerGroup, GG Clothing, GP ads Proper, Trapfest, Arena Billiards, uniquetma, jahont, evchargeplus, MB Musu projektai,
+Miles Wambaugh, Informacines konsultacijos, be pavadinimo x2
