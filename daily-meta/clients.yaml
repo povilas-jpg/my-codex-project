@@ -8,7 +8,7 @@
 clients:
   # ── AKTYVŪS su targetais (26) ────────────────────────────────────────
   - {account_id: "687512657750115",   name: "Mi Home LV",      business: "Xiaomi Store",        active: true, excluded: false, tier: auto, market: LV, industry: "Xiaomi e-com", campaign_types: [sales], currency: EUR, targets: {roas: 10}, spend_30d: 5906,
-     notes: "Target perimtas iš LT — NEPATVIRTINTAS. ROAS tik iš Sales kampanijų."}
+     notes: "ROAS 10 patvirtintas (kaip LT). ROAS tik iš Sales kampanijų."}
   - {account_id: "3177843915707130",  name: "Mi Home LT",      business: "Baltic Retail Store", active: true, excluded: false, tier: auto, market: LT, industry: "Xiaomi e-com", campaign_types: [sales], currency: EUR, targets: {roas: 10}, spend_30d: 5576,
      notes: "ROAS skaičiuoti TIK iš Sales kampanijų (isolation). ROAS >12 — svarstyti biudžeto didinimą."}
   - {account_id: "548881154142256",   name: "Comfortly",       business: "Comfortly",           active: true, excluded: false, tier: auto, market: LT, industry: "e-com", campaign_types: [sales], currency: EUR, targets: {roas: 4}, spend_30d: 2518,
