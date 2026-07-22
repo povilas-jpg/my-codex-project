@@ -68,8 +68,12 @@ Per account:
 **1. Fetch** (Meta MCP; load tools via ToolSearch as needed — prefer `ads_insights_performance_trend`
 for daily series, `ads_get_ad_entities` for campaign/ad set/ad statuses+budgets+bid strategies,
 `ads_get_errors` for delivery/rejection issues, `ads_account_get_activity_logs` for recent edits):
-- Daily series, last `LOOKBACK_DAYS` days, account + campaign level: spend, impressions, results,
-  result type, link clicks, purchases, purchase value, leads, calls, reach.
+- Daily series, last `LOOKBACK_DAYS` days, account + campaign level: spend, impressions, results
+  (+type), `actions:link_click`, `purchase_roas` for sales, frequency. Note: `inline_link_clicks`
+  is not a valid field — use `actions:link_click`. Multi-campaign accounts return large payloads
+  (e.g. Argus: 54KB for 15d) — when a response lands in a tool-results file, parse it with
+  python/jq from the file; never paste it into context. Cross-check: Σ(campaign daily spend) must
+  match the account 30d spend within 1%.
 - 7-day frequency per active campaign/ad set (prospecting vs retargeting — retargeting tolerates
   freq up to 8–10, rule F6).
 - Entity statuses: effective_status, learning phase status, daily budgets, bid strategy.
