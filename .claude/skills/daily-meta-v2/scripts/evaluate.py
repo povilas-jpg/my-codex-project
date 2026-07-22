@@ -187,14 +187,20 @@ def evaluate_client(client, W, run_date):
                            "text": f"Spend anomalija: vakar {fmt(sp_y)} {cur_unit} vs 7 d. vidurkis {fmt(avg_daily_m)} {cur_unit}/d ({fmt((sp_y-avg_daily_m)/avg_daily_m*100,1)} %)"})
 
     cpa_target = targets.get("cpl") or targets.get("cps")
-    if cpa_target:
+    # K1 reference: explicit CPA target, or — for ROAS clients — trailing avg purchase cost
+    # (spend/purchases over mature7; needs n>=10 so the reference itself is stable)
+    k1_ref, k1_label = cpa_target, "target"
+    if k1_ref is None and kind == "roas" and n_m >= 10 and sp_m > 0:
+        k1_ref, k1_label = sp_m / n_m, "vid. pirkimo kainos"
+    if k1_ref:
         for c in [c for c in camps if c.get("active", True)]:
             s3, n3, _ = agg([c], W["last3"], "cpl")
-            if n3 == 0 and s3 >= CFG["STOP_LOSS_MULT"] * cpa_target and campaign_age_days(c, run_date) > 3:
-                (proposals if tier == "big" else proposals).append(  # K1 = emergency, same-day both tiers
+            if n3 == 0 and s3 >= CFG["STOP_LOSS_MULT"] * k1_ref and campaign_age_days(c, run_date) > 3:
+                proposals.append(  # K1 = emergency, same-day both tiers
                     {"rule": "K1", "action": "pause",
                      "entity": c["name"],
-                     "text": f"Sustabdyti „{c['name']}“ — K1: {fmt(s3)} {cur_unit} per 3 d., 0 rezultatų (≥2× target {fmt(cpa_target)} {cur_unit})"})
+                     "text": f"Sustabdyti „{c['name']}“ — K1: {fmt(s3)} {cur_unit} per 3 d., 0 rezultatų (≥2× {k1_label} {fmt(k1_ref)} {cur_unit})"})
+    if cpa_target:
         if k_m is not None and k_m > CFG["K2_MULT"] * cpa_target and sp_m >= CFG["K2_MIN_SPEND"] and n_m >= CFG["K2_MIN_CONV"]:
             item = {"rule": "K2", "action": "review",
                     "text": f"7 d. kaina {fmt(k_m)} {cur_unit} > 2× target ({fmt(cpa_target)} {cur_unit}) — peržiūrėti/mažinti biudžetą"}
