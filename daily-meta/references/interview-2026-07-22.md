@@ -39,3 +39,34 @@ Chase Calm, Neoreklama, VisitSiauliai pagr., BerlinMonroe, Flori 2, Capital Mari
 Azuolu namai OLD, ndt, Audrafestival, HLC plus, TWE Httpool, Premium kemperiai, Medzio dizainas, VDC, Ambalai,
 RonerGroup, GG Clothing, GP ads Proper, Trapfest, Arena Billiards, uniquetma, jahont, evchargeplus, MB Musu projektai,
 Miles Wambaugh, Informacines konsultacijos, be pavadinimo x2
+R6 (sweep targetai):
+- Senoji baldine 729931468178542: active=false "NE Povilo atsakomybe (interviu)"
+- Explorway 782569629984808: targets.cpl=10; [leads]
+- Muzikinis zaidimas 908926051206165: targets.roas=4; [sales]
+- WallMountFor 1504602114646206: targets.roas=3; [sales]
+R7:
+- Hotfiks 3925670797662674: active=false "netikrinti (interviu)"
+- Vaiku Pasaulis 988273141900552: targets.roas=8; [sales] (patvirtinta jo)
+- AJ events 1267715865569221: targets.roas=9; [sales]
+- fotoPro 651161233548858: targets.roas=6 (6-7); [sales]
+R8:
+- Centro odontologai 25540421272268369: targets.cps=10; [calls]
+- WiseTeam 3398945290190889: targets.cpl=20; [leads]
+- U&L 722544149005388: active=false "netikrinti (interviu)"
+- Groomy 1632282691138734: active=false "netikrinti (interviu)"
+R9:
+- Covers 541603778283201: targets.roas=4; [sales]
+- Tomas Tamoshius 2960277294193264: excluded=true "NE Povilo"
+- VisitSiauliai 348817563870470: targets.cpm=2; [awareness]
+- annika.lt 625358556130224: targets.roas=4; [sales]
+R10:
+- Stogo Konstrukcija 419644914203233: be targeto - trend-only (patvirtinta)
+- Arena Pizza 1041865527791638: active=false "netikrinti (interviu)"
+- Kambo 359474156002585: targets.roas=3; [sales]
+- Deguva 1071311104506111: targets.cpl=4 (3-4); [leads]
+R11 (paskutinis):
+- Rumsiskiu baldai 845476730453855: active=true, be targeto, "nepaleistas - netrukus paleis"
+- Arthangers 1612571132792898: active=false
+- Rimantas Steponavicius 2117918399040782: active=false
+- AutoPRO 440135393832783: be targeto - trend-only (patvirtinta)
+INTERVIU BAIGTAS: 26 su targetais + 6 stebimi be targetu = 32 aktyvus; 15 isjungtu; ~65 tusti neregistruoti.

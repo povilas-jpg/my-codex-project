@@ -1,73 +1,76 @@
-# daily-meta — klientų registras
-# Interviu 2026-07-22 (5 raundai) + pilnas 30 d. spend sweep per visus 113 aktyvių accountų.
+# daily-meta — klientų registras (GALUTINIS po pilno interviu)
+# Interviu 2026-07-22: 11 raundų + pilnas 30 d. spend sweep per visus 113 aktyvių accountų.
 # NIGHTLY tikrina TIK active: true && excluded: false įrašus.
 # Be targets — tik health scan (H) + trendo kryptis; kill/scale (K/S) netaikomi (G8).
-# Targetą nustatyti/keisti: vienu sakiniu chat'e ("Senoji baldinė ROAS 4") arba INTERVIEW režimu.
-# Pilnas accountų snapshot'as: references/accounts-snapshot-2026-07.json
+# Targetą keisti: vienu sakiniu chat'e ("Deguva CPL 5") arba INTERVIEW režimu.
+# Accountų snapshot'as: references/accounts-snapshot-2026-07.json · Interviu log: references/interview-2026-07-22.md
 
 clients:
-  # ── AKTYVŪS su targetais (interviu 2026-07-22) ───────────────────────
+  # ── AKTYVŪS su targetais (26) ────────────────────────────────────────
+  - {account_id: "687512657750115",   name: "Mi Home LV",      business: "Xiaomi Store",        active: true, excluded: false, tier: auto, market: LV, industry: "Xiaomi e-com", campaign_types: [sales], currency: EUR, targets: {roas: 10}, spend_30d: 5906,
+     notes: "Target perimtas iš LT — NEPATVIRTINTAS. ROAS tik iš Sales kampanijų."}
   - {account_id: "3177843915707130",  name: "Mi Home LT",      business: "Baltic Retail Store", active: true, excluded: false, tier: auto, market: LT, industry: "Xiaomi e-com", campaign_types: [sales], currency: EUR, targets: {roas: 10}, spend_30d: 5576,
      notes: "ROAS skaičiuoti TIK iš Sales kampanijų (isolation). ROAS >12 — svarstyti biudžeto didinimą."}
-  - {account_id: "687512657750115",   name: "Mi Home LV",      business: "Xiaomi Store",        active: true, excluded: false, tier: auto, market: LV, industry: "Xiaomi e-com", campaign_types: [sales], currency: EUR, targets: {roas: 10}, spend_30d: 5906,
-     notes: "Target perimtas iš LT — NEPATVIRTINTAS (interviu nutrūko). ROAS tik iš Sales kampanijų."}
   - {account_id: "548881154142256",   name: "Comfortly",       business: "Comfortly",           active: true, excluded: false, tier: auto, market: LT, industry: "e-com", campaign_types: [sales], currency: EUR, targets: {roas: 4}, spend_30d: 2518,
-     notes: "Gyvas GHS accountas (savas 1157941327914644 tuščias)."}
-  - {account_id: "25197936806460266", name: "Solds",           business: "solds.lt",            active: true, excluded: false, tier: auto, market: LT, industry: "e-com", campaign_types: [traffic], currency: EUR, targets: {}, spend_30d: 1707,
-     notes: "Traffic kampanijos — stebėti CPC per trendą (alertas tik H6: CPC +20 % vs 7 d. vidurkis), be fiksuotos ribos, be kill/scale. Solds 2 tuščias."}
-  - {account_id: "1210331371269787",  name: "Solds x RO16",    business: "solds.lt",            active: true, excluded: false, tier: auto, market: LT, industry: "e-com kolaboracija", campaign_types: [traffic], currency: EUR, targets: {}, spend_30d: 299,
-     notes: "Kaip pagrindinis Solds — CPC trendo stebėjimas."}
+     notes: "Gyvas GHS accountas (savas tuščias)."}
+  - {account_id: "782569629984808",   name: "Explorway",       business: "Explorway",           active: true, excluded: false, tier: auto, market: LT, industry: "užklausos", campaign_types: [leads], currency: EUR, targets: {cpl: 10}, spend_30d: 1079,
+     notes: "~10 € už užklausą."}
   - {account_id: "2628073274076635",  name: "Petplius",        business: "Prekės Gyvūnams",     active: true, excluded: false, tier: auto, market: LT, industry: "e-com gyvūnų prekės", campaign_types: [sales], currency: EUR, targets: {roas: 10}, spend_30d: 1048,
      notes: "ROAS 10+ gerai; >12 — siūlyti didinti biudžetą (S1)."}
   - {account_id: "346886212061263",   name: "Argus",           business: "Saugos tarnyba ARGUS", active: true, excluded: false, tier: auto, market: LT, industry: "sauga — DARBUOTOJŲ paieška", campaign_types: [leads, traffic], currency: EUR, targets: {cpl: 4}, spend_30d: 1042,
-     notes: "Leads = apsaugos darbuotojų kontaktai įdarbinimui (~4 € gera kaina; alertas kai brangsta) + traffic į darbo skelbimus. Kryptimis segmentuota — konsolidacijos nesiūlyti agresyviai. #2 accountas tuščias."}
+     notes: "Leads = darbuotojų kontaktai įdarbinimui (~4 € gera kaina) + traffic į skelbimus. Kryptimis segmentuota — konsolidacijos nesiūlyti agresyviai."}
   - {account_id: "159825277170040",   name: "Ailuda",          business: "UAB Ailuda projektai", active: true, excluded: false, tier: auto, market: LT, industry: "projektai", campaign_types: [leads, calls], currency: EUR, targets: {cpl: 7, cps: 8}, spend_30d: 1024,
      notes: "CPL 6–7 €, cost per call 7–8 €."}
-  - {account_id: "889263423638567",   name: "Gama Displays",   business: "Gama Displays",       active: true, excluded: false, tier: auto, market: LT, industry: "reklamos ekranai B2B", campaign_types: [leads], currency: EUR, targets: {cpl: 10}, spend_30d: 903,
-     notes: ""}
-  - {account_id: "526329059653227",   name: "MTK",             business: "Mėmelio Tapomoji Kasa", active: true, excluded: false, tier: auto, market: LT, industry: "menai/renginiai", campaign_types: [leads], currency: EUR, targets: {cpl: 10}, spend_30d: 870,
-     notes: "10 € už leadą — gera kaina."}
-  - {account_id: "718107270686570",   name: "Shade City",      business: "Shadeshade",          active: true, excluded: false, tier: auto, market: LT, industry: "e-com", campaign_types: [sales], currency: EUR, targets: {roas: 3}, spend_30d: 748,
-     notes: "Naujas accountas (senas DISABLED)."}
+  - {account_id: "908926051206165",   name: "Muzikinis žaidimas", business: "Offline.Game.Club", active: true, excluded: false, tier: auto, market: LT, industry: "žaidimai e-com", campaign_types: [sales], currency: EUR, targets: {roas: 4}, spend_30d: 963, notes: ""}
+  - {account_id: "1504602114646206",  name: "WallMountFor",    business: "garageprintslt",      active: true, excluded: false, tier: auto, market: LT, industry: "e-com", campaign_types: [sales], currency: EUR, targets: {roas: 3}, spend_30d: 906, notes: ""}
+  - {account_id: "889263423638567",   name: "Gama Displays",   business: "Gama Displays",       active: true, excluded: false, tier: auto, market: LT, industry: "reklamos ekranai B2B", campaign_types: [leads], currency: EUR, targets: {cpl: 10}, spend_30d: 903, notes: ""}
+  - {account_id: "526329059653227",   name: "MTK",             business: "Mėmelio Tapomoji Kasa", active: true, excluded: false, tier: auto, market: LT, industry: "menai/renginiai", campaign_types: [leads], currency: EUR, targets: {cpl: 10}, spend_30d: 870, notes: ""}
+  - {account_id: "988273141900552",   name: "Vaikų Pasaulis",  business: "GHS [Httpool]",       active: true, excluded: false, tier: auto, market: LT, industry: "vaikų prekės", campaign_types: [sales], currency: EUR, targets: {roas: 8}, spend_30d: 840, notes: ""}
+  - {account_id: "718107270686570",   name: "Shade City",      business: "Shadeshade",          active: true, excluded: false, tier: auto, market: LT, industry: "e-com", campaign_types: [sales], currency: EUR, targets: {roas: 3}, spend_30d: 748, notes: "Naujas accountas."}
   - {account_id: "1131492558463316",  name: "Autokraitis",     business: "Autokraitis",         active: true, excluded: false, tier: auto, market: LT, industry: "auto", campaign_types: [leads], currency: EUR, targets: {cpl: 6}, spend_30d: 741,
      notes: "Gyvas GHS accountas (UAB Kraitis tuščias)."}
   - {account_id: "1458201581610062",  name: "Darnios Erdvės",  business: "Darnios erdves",      active: true, excluded: false, tier: auto, market: LT, industry: "interjeras", campaign_types: [leads], currency: EUR, targets: {cpl: 4}, spend_30d: 653,
      notes: "3–4 € už leadą — gera kaina."}
+  - {account_id: "1267715865569221",  name: "AJ events",       business: "AJ events",           active: true, excluded: false, tier: auto, market: LT, industry: "renginiai", campaign_types: [sales], currency: EUR, targets: {roas: 9}, spend_30d: 651, notes: ""}
+  - {account_id: "651161233548858",   name: "fotoPro",         business: "PRO sprendimai",      active: true, excluded: false, tier: auto, market: LT, industry: "foto", campaign_types: [sales], currency: EUR, targets: {roas: 6}, spend_30d: 630,
+     notes: "ROAS 6–7. Gyvas GHS-fotoPro (savas PRO sprendimai tuščias)."}
+  - {account_id: "25540421272268369", name: "Centro odontologai", business: "Centro odontologai", active: true, excluded: false, tier: auto, market: LT, industry: "odontologija", campaign_types: [calls], currency: EUR, targets: {cps: 10}, spend_30d: 597, notes: ""}
   - {account_id: "452358859575742",   name: "Vet Slėnis",      business: "Vet Slėnis",          active: true, excluded: false, tier: auto, market: LT, industry: "veterinarija + e-com", campaign_types: [sales], currency: EUR, targets: {roas: 8}, spend_30d: 589,
-     notes: "ROAS 8–10. Gyvas Httpool accountas (pagrindinis tuščias)."}
-  - {account_id: "268797424916238",   name: "Vibramedica",     business: "VibraMedica",         active: true, excluded: false, tier: auto, market: LT, industry: "medicinos įranga", campaign_types: [traffic, calls], currency: EUR, targets: {}, spend_30d: 448,
-     notes: "Be griežto targeto — stebėti srauto rodiklius (CPC/CTR) ir skambučių skaičių bei kokybę; alertai tik pagal trendą. Gyvas JŲ PAČIŲ accountas (GHS tuščias). Istoriškai Pixel problemos."}
+     notes: "ROAS 8–10. Gyvas Httpool accountas."}
+  - {account_id: "3398945290190889",  name: "WiseTeam",        business: "GHS",                 active: true, excluded: false, tier: auto, market: LT, industry: "B2B software", campaign_types: [leads], currency: EUR, targets: {cpl: 20}, spend_30d: 533, notes: ""}
+  - {account_id: "541603778283201",   name: "The Covers Company", business: "The Covers Company", active: true, excluded: false, tier: auto, market: LT, industry: "e-com", campaign_types: [sales], currency: EUR, targets: {roas: 4}, spend_30d: 438, notes: ""}
+  - {account_id: "348817563870470",   name: "VisitSiauliai",   business: "GHS [Httpool]",       active: true, excluded: false, tier: auto, market: LT, industry: "turizmas", campaign_types: [awareness], currency: EUR, targets: {cpm: 2}, spend_30d: 353,
+     notes: "Awareness — alertas kai CPM >2 €."}
+  - {account_id: "625358556130224",   name: "annika.lt",       business: "annika.lt",           active: true, excluded: false, tier: auto, market: LT, industry: "e-com", campaign_types: [sales], currency: EUR, targets: {roas: 4}, spend_30d: 313, notes: ""}
+  - {account_id: "359474156002585",   name: "Kambo Kombucha",  business: "Kambo Kombucha",      active: true, excluded: false, tier: auto, market: LT, industry: "gėrimai", campaign_types: [sales], currency: EUR, targets: {roas: 3}, spend_30d: 259, notes: ""}
+  - {account_id: "1071311104506111",  name: "Deguva",          business: "GHS",                 active: true, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [leads], currency: EUR, targets: {cpl: 4}, spend_30d: 251,
+     notes: "CPL 3–4 €."}
   - {account_id: "285905716159639",   name: "UnoSol",          business: "UnoSol",              active: true, excluded: false, tier: auto, market: LT, industry: "saulės elektrinės", campaign_types: [leads], currency: EUR, targets: {cpl: 6}, spend_30d: 0,
      notes: "CPL: B2C 5–6 €, B2B iki 10 €. 0 spend 30 d. — jei neatsinaujins, perkelti į inactive."}
 
-  # ── AKTYVŪS BE TARGETŲ (sweep 2026-07-22: leidžia pinigus; tik health scan + trendas) ──
-  - {account_id: "729931468178542",   name: "Senoji baldinė",  business: "Senoji Baldinė",      active: true, excluded: false, tier: auto, market: LT, industry: "baldai", campaign_types: [], currency: EUR, targets: {}, spend_30d: 6808,
-     notes: "DIDŽIAUSIAS accountas (~227 €/d)! Targetas nenustatytas — trend-only, kol Povilas pasakys."}
-  - {account_id: "782569629984808",   name: "Explorway",       business: "Explorway",           active: true, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {}, spend_30d: 1079, notes: "Sweep — targetas nenustatytas."}
-  - {account_id: "908926051206165",   name: "Muzikinis žaidimas", business: "Offline.Game.Club", active: true, excluded: false, tier: auto, market: LT, industry: "žaidimai/renginiai", campaign_types: [], currency: EUR, targets: {}, spend_30d: 963, notes: "Sweep — targetas nenustatytas."}
-  - {account_id: "1504602114646206",  name: "WallMountFor",    business: "garageprintslt",      active: true, excluded: false, tier: auto, market: LT, industry: "e-com", campaign_types: [], currency: EUR, targets: {}, spend_30d: 906, notes: "Sweep — targetas nenustatytas. Buvo UNSETTLED, dabar ACTIVE."}
-  - {account_id: "3925670797662674",  name: "Hotfiks",         business: "Hotfiks",             active: true, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {}, spend_30d: 852, notes: "Sweep — targetas nenustatytas."}
-  - {account_id: "988273141900552",   name: "Vaikų Pasaulis",  business: "GHS [Httpool]",       active: true, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {}, spend_30d: 840, notes: "Sweep — targetas nenustatytas. GHS Httpool accountas — patvirtinti ar tavo."}
-  - {account_id: "1267715865569221",  name: "AJ events",       business: "AJ events",           active: true, excluded: false, tier: auto, market: LT, industry: "renginiai", campaign_types: [], currency: EUR, targets: {}, spend_30d: 651, notes: "Sweep — targetas nenustatytas."}
-  - {account_id: "651161233548858",   name: "fotoPro",         business: "PRO sprendimai",      active: true, excluded: false, tier: auto, market: LT, industry: "foto paslaugos", campaign_types: [], currency: EUR, targets: {}, spend_30d: 630, notes: "Gyvas GHS-fotoPro (savas PRO sprendimai tuščias)."}
-  - {account_id: "25540421272268369", name: "Centro odontologai", business: "Centro odontologai", active: true, excluded: false, tier: auto, market: LT, industry: "odontologija", campaign_types: [], currency: EUR, targets: {}, spend_30d: 597, notes: "Sweep — targetas nenustatytas."}
-  - {account_id: "3398945290190889",  name: "WiseTeam",        business: "GHS",                 active: true, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {}, spend_30d: 533, notes: "Sweep — targetas nenustatytas."}
-  - {account_id: "722544149005388",   name: "U&L",             business: "Ugnis ir Ledas",      active: true, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {}, spend_30d: 497, notes: "Sweep — targetas nenustatytas."}
-  - {account_id: "1632282691138734",  name: "Groomy",          business: "Groomy",              active: true, excluded: false, tier: auto, market: LT, industry: "gyvūnų priežiūra", campaign_types: [], currency: EUR, targets: {}, spend_30d: 450, notes: "Sweep — targetas nenustatytas."}
-  - {account_id: "541603778283201",   name: "The Covers Company", business: "The Covers Company", active: true, excluded: false, tier: auto, market: LT, industry: "e-com", campaign_types: [], currency: EUR, targets: {}, spend_30d: 438, notes: "Sweep — targetas nenustatytas."}
-  - {account_id: "2960277294193264",  name: "Tomas Tamoshius", business: "",                    active: true, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {}, spend_30d: 378, notes: "Bevardis accountas su spend — patvirtinti ar tavo."}
-  - {account_id: "348817563870470",   name: "VisitSiauliai",   business: "GHS [Httpool]",       active: true, excluded: false, tier: auto, market: LT, industry: "turizmas", campaign_types: [], currency: EUR, targets: {}, spend_30d: 353, notes: "Sweep — targetas nenustatytas."}
-  - {account_id: "625358556130224",   name: "annika.lt",       business: "annika.lt",           active: true, excluded: false, tier: auto, market: LT, industry: "e-com", campaign_types: [], currency: EUR, targets: {}, spend_30d: 313, notes: "Sweep — targetas nenustatytas."}
-  - {account_id: "419644914203233",   name: "Stogo Konstrukcija", business: "Stogo Konstrukcija", active: true, excluded: false, tier: auto, market: LT, industry: "statyba", campaign_types: [], currency: EUR, targets: {}, spend_30d: 301, notes: "Sweep — targetas nenustatytas."}
-  - {account_id: "1041865527791638",  name: "Arena Pizza",     business: "Arena Pizza",         active: true, excluded: false, tier: auto, market: LT, industry: "maistas", campaign_types: [], currency: EUR, targets: {}, spend_30d: 286, notes: "Sweep — targetas nenustatytas."}
-  - {account_id: "359474156002585",   name: "Kambo Kombucha",  business: "Kambo Kombucha",      active: true, excluded: false, tier: auto, market: LT, industry: "gėrimai", campaign_types: [], currency: EUR, targets: {}, spend_30d: 259, notes: "Sweep — targetas nenustatytas."}
-  - {account_id: "1071311104506111",  name: "Deguva",          business: "GHS",                 active: true, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {}, spend_30d: 251, notes: "Sweep — targetas nenustatytas."}
-  - {account_id: "845476730453855",   name: "Rumšiškių baldai", business: "A. Jasevičiaus baldai", active: true, excluded: false, tier: auto, market: LT, industry: "baldai", campaign_types: [], currency: EUR, targets: {}, spend_30d: 215, notes: "Sweep — targetas nenustatytas."}
-  - {account_id: "1612571132792898",  name: "Arthangers",      business: "Artimartas",          active: true, excluded: false, tier: auto, market: LT, industry: "e-com", campaign_types: [], currency: EUR, targets: {}, spend_30d: 203, notes: "Sweep — targetas nenustatytas."}
-  - {account_id: "2117918399040782",  name: "Rimantas Steponavičius", business: "Geštalto Praktika", active: true, excluded: false, tier: auto, market: LT, industry: "psichoterapija", campaign_types: [], currency: EUR, targets: {}, spend_30d: 118, notes: "Sweep — targetas nenustatytas."}
-  - {account_id: "440135393832783",   name: "AutoPRO",         business: "Auto PRO",            active: true, excluded: false, tier: auto, market: LT, industry: "auto", campaign_types: [], currency: EUR, targets: {}, spend_30d: 76, notes: "Sweep — targetas nenustatytas. Mažytis (~2,5 €/d)."}
+  # ── AKTYVŪS be targetų — tik stebėjimas (6) ──────────────────────────
+  - {account_id: "25197936806460266", name: "Solds",           business: "solds.lt",            active: true, excluded: false, tier: auto, market: LT, industry: "e-com", campaign_types: [traffic], currency: EUR, targets: {}, spend_30d: 1707,
+     notes: "Traffic — CPC trendas (alertas tik H6: +20 % vs 7 d.), be kill/scale."}
+  - {account_id: "1210331371269787",  name: "Solds x RO16",    business: "solds.lt",            active: true, excluded: false, tier: auto, market: LT, industry: "e-com kolaboracija", campaign_types: [traffic], currency: EUR, targets: {}, spend_30d: 299,
+     notes: "Kaip pagrindinis Solds."}
+  - {account_id: "268797424916238",   name: "Vibramedica",     business: "VibraMedica",         active: true, excluded: false, tier: auto, market: LT, industry: "medicinos įranga", campaign_types: [traffic, calls], currency: EUR, targets: {}, spend_30d: 448,
+     notes: "Srauto rodikliai + skambučiai ir kokybė; alertai tik pagal trendą. Gyvas JŲ accountas. Istoriškai Pixel problemos."}
+  - {account_id: "419644914203233",   name: "Stogo Konstrukcija", business: "Stogo Konstrukcija", active: true, excluded: false, tier: auto, market: LT, industry: "statyba", campaign_types: [], currency: EUR, targets: {}, spend_30d: 301,
+     notes: "Be targeto — tik stebėti (patvirtinta interviu)."}
+  - {account_id: "845476730453855",   name: "Rumšiškių baldai", business: "A. Jasevičiaus baldai", active: true, excluded: false, tier: auto, market: LT, industry: "baldai", campaign_types: [], currency: EUR, targets: {}, spend_30d: 215,
+     notes: "Nepaleistas — netrukus paleis. Target nustatyti paleidus kampanijas."}
+  - {account_id: "440135393832783",   name: "AutoPRO",         business: "Auto PRO",            active: true, excluded: false, tier: auto, market: LT, industry: "auto", campaign_types: [], currency: EUR, targets: {}, spend_30d: 76,
+     notes: "Be targeto — tik stebėti (patvirtinta). Mažytis ~2,5 €/d."}
 
-  # ── SUSTABDYTI / NEBEDIRBAM (interviu 2026-07-22) ────────────────────
+  # ── IŠJUNGTI (interviu 2026-07-22) ───────────────────────────────────
+  - {account_id: "729931468178542",   name: "Senoji baldinė",  business: "Senoji Baldinė",      active: false, excluded: true,  tier: auto, market: LT, industry: "baldai", campaign_types: [], currency: EUR, targets: {}, notes: "NE Povilo atsakomybė (nors ~227 €/d)."}
+  - {account_id: "2960277294193264",  name: "Tomas Tamoshius", business: "",                    active: false, excluded: true,  tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {}, notes: "NE Povilo."}
+  - {account_id: "3925670797662674",  name: "Hotfiks",         business: "Hotfiks",             active: false, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {}, notes: "Netikrinti (interviu)."}
+  - {account_id: "722544149005388",   name: "U&L",             business: "Ugnis ir Ledas",      active: false, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {}, notes: "Netikrinti (interviu)."}
+  - {account_id: "1632282691138734",  name: "Groomy",          business: "Groomy",              active: false, excluded: false, tier: auto, market: LT, industry: "gyvūnų priežiūra", campaign_types: [], currency: EUR, targets: {}, notes: "Netikrinti (interviu)."}
+  - {account_id: "1041865527791638",  name: "Arena Pizza",     business: "Arena Pizza",         active: false, excluded: false, tier: auto, market: LT, industry: "maistas", campaign_types: [], currency: EUR, targets: {}, notes: "Netikrinti (interviu)."}
+  - {account_id: "1612571132792898",  name: "Arthangers",      business: "Artimartas",          active: false, excluded: false, tier: auto, market: LT, industry: "e-com", campaign_types: [], currency: EUR, targets: {}, notes: "Netikrinti (interviu)."}
+  - {account_id: "2117918399040782",  name: "Rimantas Steponavičius", business: "Geštalto Praktika", active: false, excluded: false, tier: auto, market: LT, industry: "psichoterapija", campaign_types: [], currency: EUR, targets: {}, notes: "Netikrinti (interviu)."}
   - {account_id: "25719768167711394", name: "Power Rabbit",    business: "PowerRabbit Lietuva", active: false, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [awareness], currency: EUR, targets: {}, notes: "Klientas sustojęs 2026-07."}
   - {account_id: "420321025126676",   name: "Clinic Agatas (USD)", business: "Clinic Agatas",   active: false, excluded: false, tier: auto, market: LT, industry: "klinika", campaign_types: [calls], currency: USD, targets: {}, notes: "Nedirbame dabar; jei pradės vėl — pasakys."}
   - {account_id: "864552845224362",   name: "Clinic Agatas (GHS EUR)", business: "Clinic Agatas", active: false, excluded: false, tier: auto, market: LT, industry: "klinika", campaign_types: [calls], currency: EUR, targets: {}, notes: "Kaip viršuje."}
@@ -76,11 +79,5 @@ clients:
   - {account_id: "417656152966870",   name: "ActionCOACH",     business: "Actioncoach Baltic",  active: false, excluded: false, tier: auto, market: LT, industry: "B2B koučingas", campaign_types: [leads], currency: EUR, targets: {}, notes: "Netikrinti (interviu)."}
   - {account_id: "857146253775803",   name: "Iosomo",          business: "Iosomo",              active: false, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {}, notes: "Netikrinti (interviu)."}
 
-# ── SWEEP 2026-07-22 rezultatas: likusieji ~65 aktyvūs accountai turėjo 0 spend per 30 d. ──
-# (LULULU, ADMEN, Juolab, O kodėl ne ×2, Mamos diena, Jonas Vinduer ×2, Pupa Supa, Manogarantijos,
-#  Fi Clinica ×2, GHS main, Samsonas, Hill Garden, Migla, Timy Cars, PROSPECTORS, Ishoro, Tutum,
-#  Chase Calm, Neoreklama, BerlinMonroe, Flori 2, Capital Marine, Elegant Line, doup, Svenceles,
-#  Ąžuolų namai, ndt, Audrafestival, HLC, TWE, Premium kemperiai, Medžio dizainas, VDC, Ambalai,
-#  RonerGroup, GG Clothing, GP ads, Trapfest, Arena Billiards, uniquetma, jahont, evchargeplus,
-#  MB Mūsų projektai, Miles Wambaugh, Informacinės konsultacijos ir kt.)
-# Jie neregistruoti — mėnesinis WATCH spend sweep'as praneš, jei kuris atsibus.
+# ~65 aktyvūs accountai su 0 spend per 30 d. — neregistruoti; mėnesinis WATCH
+# spend sweep'as praneš, jei kuris atsibus (sąrašas: references/interview-2026-07-22.md).
