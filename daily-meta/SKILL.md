@@ -9,7 +9,9 @@ description: >
   via Meta MCP, evaluates research-backed decision rules (kill/scale/wait/fatigue), renders SocialAds
   dark-theme trend charts, and outputs a Lithuanian daily brief with numbered action proposals.
   NEVER executes changes without explicit approval ("vykdyk N"). Also trigger on terse cues like
-  "paleisk daily" or a morning greeting asking about ad performance.
+  "paleisk daily" or a morning greeting asking about ad performance. Single-client CHECK mode
+  triggers on "patikrink {klientas}", "/daily-meta {klientas}", "kaip Gama?", "kas su Petplius?",
+  "parodyk {klientas} situaciją" — runs the same pipeline for that client only, on demand.
 ---
 
 # daily-meta v2 — kasdienis Meta Ads optimizavimas
@@ -40,6 +42,7 @@ ZERO_SPEND_CADENCE = weekly # registry-active accounts with 7d spend = 0 → che
 | Mode | Trigger | What happens |
 |---|---|---|
 | NIGHTLY | scheduled 3:00 run, /daily-meta, "daily checkas" | Health scan + rules + charts + LT brief with proposals |
+| CHECK | "patikrink {klientas}", "kaip {klientas}?", "/daily-meta {klientas}" | NIGHTLY pipeline for ONE client (or a named subset), on demand, with extra depth |
 | WEEKLY | NIGHTLY on Monday, "savaitės apžvalga" | NIGHTLY + closed-week 7v7 deep-dive, fatigue triage, queued LOW-tier proposals |
 | EXECUTE | "vykdyk 1,3" / "vykdyk visus" | Execute approved proposals via Meta MCP, log, confirm |
 | INTERVIEW | "interviu", "nustatom targetus", unassigned account found | Per-client target/profile Q&A → clients.yaml |
@@ -122,6 +125,19 @@ PNGs. Numbered proposals with rule citations. End with the "vykdyk" instruction 
 - No proposal without a rule ID and numbers. No alerts for 🟢 clients.
 - Currency symbols match the registry. If a check fails for one client — drop that client's
   section, add ❌ footer line, deliver the rest.
+
+## CHECK mode (single client, on demand)
+
+Same pipeline as NIGHTLY, scoped to the named client(s) — resolve the name against
+`clients.yaml` (fuzzy match; if ambiguous, ask once). Differences from the nightly pass:
+- Detail trend PNG ALWAYS rendered and attached, even when 🟢 (the user asked — show it).
+- Extra depth: per-campaign 7d table (spend, results, KPI, freq7) in the brief — on-demand
+  checks are diagnostic, not a scan.
+- Inactive/excluded clients: still allowed — note the registry status ("klientas išjungtas
+  registre — rodau, bet taisyklės netaikomos be targetų").
+- Proposals follow the same rules and the same approval gate; tier queueing does NOT apply
+  (an on-demand check surfaces everything now, including what nightly queued for Monday).
+- No state side-effects except alert dedup timestamps.
 
 ## WEEKLY additions (Monday)
 
