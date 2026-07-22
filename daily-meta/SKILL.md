@@ -50,9 +50,10 @@ unavailable, output one line saying so and stop — never fabricate data.
 
 ## Registry — clients.yaml
 
-Load `clients.yaml` first. Skip `excluded: true` and `active: false`. Account not in the registry →
-process read-only, mark 🆕 "nepriskirtas" in the brief, offer mini-interview (rule G8); no K/S rule
-evaluation without targets — trend-only verdict.
+Load `clients.yaml` first. NIGHTLY processes ONLY entries with `active: true` and `excluded: false`
+— never fetch insights for the other ~90 accounts (rate limits). A registry client without targets
+gets trend-only verdicts, no K/S proposals (G8). New/unregistered spenders are caught by the
+monthly WATCH spend sweep, not nightly.
 
 `tier: auto` = trailing-30d spend/day vs `TIER_SPLIT`. Currency from registry (`Agatas = $`).
 
@@ -166,6 +167,10 @@ Re-run INTERVIEW for a single client any time ("pakeisk Gama targetą") — edit
 ## WATCH mode (monthly)
 
 First nightly run of each month (or "kas naujo Meta'oje"):
+0. **Spend sweep**: re-pull the full account list (paginate!), diff vs `clients.yaml` +
+   `references/accounts-snapshot-2026-07.json`; for active accounts NOT in the registry, fetch
+   last_30d spend only (account level, sequential batches). Any spender → "🆕 {name} leidžia
+   {suma} €/30 d. — pridėti per interviu?" line in that day's brief. Update the snapshot file.
 1. WebSearch 3–5 queries: Meta ads changes/updates this month, Advantage+ changes, attribution
    changes, new ad formats/placements. Prefer Meta official + ppc.land + jonloomer.com.
 2. Append dated bullet entries to `references/platform-watch.md` — only changes that affect

@@ -1,60 +1,70 @@
 # daily-meta — klientų registras
+# Užpildyta per targetų interviu 2026-07-22 (7 raundai + 30 d. spend patikra dublikatams).
+# NIGHTLY tikrina TIK active: true && excluded: false įrašus.
+# Pilnas visų 113 aktyvių accountų snapshot'as: references/accounts-snapshot-2026-07.json
+# Pridėti naują klientą: INTERVIEW režimas ("pridėk klientą X").
 #
-# Pildoma per INTERVIEW režimą (SKILL.md). Schema:
-#   account_id      — Meta ad account ID (be "act_" prefikso)
-#   name            — kliento vardas output'e
-#   business        — verslo grupė (GHS = Greenhill Studio accountai)
-#   active          — ar įtraukti į naktinį runą
-#   excluded        — true = ne Povilo atsakomybė (praleisti visada)
-#   tier            — auto | low | big  (auto = trailing 30 d. spend/d. vs 50 €/d)
-#   market          — LT | LV | EE | PL | ...
-#   industry        — trumpas verslo aprašas rekomendacijų pritaikymui
-#   campaign_types  — [sales|leads|calls|awareness|engagement|traffic|video|mixed]
-#   currency        — EUR | USD (rodymui; Agatas = USD)
-#   targets         — cpl / cps / roas / cpm / cpe; null = nenustatyta (K/S taisyklės netaikomos, G8)
-#   notes           — laisvas tekstas (pvz. sezoniškumas, žinomos problemos)
-#
-# Seed: aktyvūs + queryable accountai iš 2026-07-22 MCP snapshot'o.
-# targets užpildomi interview metu; excluded patvirtinami ten pat.
+# Schema: žr. SKILL.md. spend_30d — 2026-07-22 snapshot, tik orientacijai (tier=auto skaičiuoja gyvai).
 
 clients:
-  - {account_id: "245309178",        name: "Vet Slėnis",            business: "Vet Slėnis",          active: true, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: ""}
-  - {account_id: "346886212061263",  name: "Argus",                 business: "Saugos tarnyba ARGUS", active: true, excluded: false, tier: auto, market: LT, industry: "sauga", campaign_types: [], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: "kryptimis segmentuotos kampanijos — konsolidacijos nesiūlyti agresyviai"}
-  - {account_id: "906552406062888",  name: "Autokraitis",           business: "Autokraitis",         active: true, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: ""}
-  - {account_id: "10205308838940543", name: "(be pavadinimo #1020)", business: "",                   active: true, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: "patikslinti interview metu"}
-  - {account_id: "857146253775803",  name: "Iosomo",                business: "Iosomo",              active: true, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: ""}
-  - {account_id: "889263423638567",  name: "Gama Displays",         business: "Gama Displays",       active: true, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [leads], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: ""}
-  - {account_id: "764293020097789",  name: "Juolab media",          business: "Narimantas Venckevičius", active: true, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: ""}
-  - {account_id: "699485319671369",  name: "Naikinta",              business: "UAB Naikinta",        active: true, excluded: false, tier: auto, market: LT, industry: "kenkėjų kontrolė", campaign_types: [], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: ""}
-  - {account_id: "971666112991543",  name: "PRO sprendimai",        business: "PRO sprendimai",      active: true, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: ""}
-  - {account_id: "239996460012240",  name: "O kodėl ne?",           business: "Mindaugas Gudaitis",  active: true, excluded: false, tier: auto, market: LT, industry: "maistas", campaign_types: [], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: ""}
-  - {account_id: "871698816690442",  name: "O kodėl ne sumuštinis?", business: "Mindaugas Gudaitis", active: true, excluded: false, tier: auto, market: LT, industry: "maistas", campaign_types: [], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: ""}
-  - {account_id: "420321025126676",  name: "Clinic Agatas",         business: "Clinic Agatas",       active: true, excluded: false, tier: auto, market: LT, industry: "klinika, skausmo gydymas", campaign_types: [calls, leads], currency: USD, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: "USD accountas — rodyti $"}
-  - {account_id: "285905716159639",  name: "UnoSol",                business: "UnoSol",              active: true, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: ""}
-  - {account_id: "2628073274076635", name: "Petplius",              business: "Prekės Gyvūnams",     active: true, excluded: false, tier: auto, market: LT, industry: "e-com gyvūnų prekės", campaign_types: [sales], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: "Sales + Rem struktūra"}
-  - {account_id: "2590981504502623", name: "(be pavadinimo #2590)", business: "",                    active: true, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: "patikslinti interview metu"}
-  - {account_id: "702984183760378",  name: "HYGGE Lietuva",         business: "HYGGE Lietuva",       active: true, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: ""}
-  - {account_id: "417656152966870",  name: "ActionCOACH",           business: "Actioncoach Baltic States", active: true, excluded: false, tier: auto, market: LT, industry: "verslo koučingas B2B", campaign_types: [leads], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: ""}
-  - {account_id: "1157941327914644", name: "Comfortly",             business: "Comfortly",           active: true, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: ""}
-  - {account_id: "440135393832783",  name: "AutoPRO",               business: "Auto PRO",            active: true, excluded: false, tier: auto, market: LT, industry: "auto", campaign_types: [], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: ""}
-  - {account_id: "762367007723583",  name: "ADMEN",                 business: "Admen.lt",            active: true, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: ""}
+  # ── AKTYVŪS su targetais ─────────────────────────────────────────────
+  - {account_id: "3177843915707130",  name: "Mi Home LT",      business: "Baltic Retail Store", active: true, excluded: false, tier: auto, market: LT, industry: "Xiaomi e-com", campaign_types: [sales], currency: EUR, targets: {roas: 10}, spend_30d: 5576,
+     notes: "ROAS skaičiuoti TIK iš Sales kampanijų (isolation). ROAS >12 — svarstyti biudžeto didinimą."}
+  - {account_id: "687512657750115",   name: "Mi Home LV",      business: "Xiaomi Store",        active: true, excluded: false, tier: auto, market: LV, industry: "Xiaomi e-com", campaign_types: [sales], currency: EUR, targets: {roas: 10}, spend_30d: 5906,
+     notes: "PATVIRTINTI: target perimtas iš LT (interviu nutrūko). ROAS tik iš Sales kampanijų."}
+  - {account_id: "548881154142256",   name: "Comfortly",       business: "Comfortly",           active: true, excluded: false, tier: auto, market: LT, industry: "e-com", campaign_types: [sales], currency: EUR, targets: {roas: 4}, spend_30d: 2518,
+     notes: "Gyvas GHS accountas (savas 1157941327914644 tuščias)."}
+  - {account_id: "25197936806460266", name: "Solds",           business: "solds.lt",            active: true, excluded: false, tier: auto, market: LT, industry: "e-com", campaign_types: [traffic], currency: EUR, targets: {}, spend_30d: 1707,
+     notes: "Dabar daugiausia traffic kampanijos — stebėti CPC ir srauto rodiklius, be kill/scale pagal CPA. Solds 2 accountas tuščias."}
+  - {account_id: "1210331371269787",  name: "Solds x RO16",    business: "solds.lt",            active: true, excluded: false, tier: auto, market: LT, industry: "e-com kolaboracija", campaign_types: [traffic], currency: EUR, targets: {}, spend_30d: 299,
+     notes: "Antras gyvas Solds accountas — CPC stebėjimas kaip pagrindiniam."}
+  - {account_id: "2628073274076635",  name: "Petplius",        business: "Prekės Gyvūnams",     active: true, excluded: false, tier: auto, market: LT, industry: "e-com gyvūnų prekės", campaign_types: [sales], currency: EUR, targets: {roas: 10}, spend_30d: 1048,
+     notes: "ROAS 10+ gerai; >12 — siūlyti didinti biudžetą (S1)."}
+  - {account_id: "346886212061263",   name: "Argus",           business: "Saugos tarnyba ARGUS", active: true, excluded: false, tier: auto, market: LT, industry: "sauga — DARBUOTOJŲ paieška", campaign_types: [leads, traffic], currency: EUR, targets: {cpl: 4}, spend_30d: 1042,
+     notes: "Leads = apsaugos darbuotojų kontaktai įdarbinimui (~4 € gera kaina; alertas kai brangsta) + traffic į darbo skelbimus. Kryptimis segmentuota — konsolidacijos nesiūlyti agresyviai. #2 accountas (905281137739114) tuščias."}
+  - {account_id: "159825277170040",   name: "Ailuda",          business: "UAB Ailuda projektai", active: true, excluded: false, tier: auto, market: LT, industry: "projektai", campaign_types: [leads, calls], currency: EUR, targets: {cpl: 7, cps: 8}, spend_30d: 1024,
+     notes: "CPL 6–7 €, cost per call 7–8 €."}
+  - {account_id: "889263423638567",   name: "Gama Displays",   business: "Gama Displays",       active: true, excluded: false, tier: auto, market: LT, industry: "reklamos ekranai B2B", campaign_types: [leads], currency: EUR, targets: {cpl: 10}, spend_30d: 903,
+     notes: ""}
+  - {account_id: "526329059653227",   name: "MTK",             business: "Mėmelio Tapomoji Kasa", active: true, excluded: false, tier: auto, market: LT, industry: "menai/renginiai", campaign_types: [leads], currency: EUR, targets: {cpl: 10}, spend_30d: 870,
+     notes: "10 € už leadą — gera kaina."}
+  - {account_id: "718107270686570",   name: "Shade City",      business: "Shadeshade",          active: true, excluded: false, tier: auto, market: LT, industry: "e-com", campaign_types: [sales], currency: EUR, targets: {roas: 3}, spend_30d: 748,
+     notes: "Naujas accountas (senas 676563343276838 DISABLED)."}
+  - {account_id: "1131492558463316",  name: "Autokraitis",     business: "Autokraitis",         active: true, excluded: false, tier: auto, market: LT, industry: "auto", campaign_types: [leads], currency: EUR, targets: {cpl: 6}, spend_30d: 741,
+     notes: "Gyvas GHS accountas (UAB Kraitis 906552406062888 tuščias)."}
+  - {account_id: "1458201581610062",  name: "Darnios Erdvės",  business: "Darnios erdves",      active: true, excluded: false, tier: auto, market: LT, industry: "interjeras", campaign_types: [leads], currency: EUR, targets: {cpl: 4}, spend_30d: 653,
+     notes: "3–4 € už leadą — gera kaina."}
+  - {account_id: "452358859575742",   name: "Vet Slėnis",      business: "Vet Slėnis",          active: true, excluded: false, tier: auto, market: LT, industry: "veterinarija + e-com", campaign_types: [sales], currency: EUR, targets: {roas: 8}, spend_30d: 589,
+     notes: "ROAS 8–10. Gyvas Httpool accountas (pagrindinis 245309178 tuščias)."}
+  - {account_id: "268797424916238",   name: "Vibramedica",     business: "VibraMedica",         active: true, excluded: false, tier: auto, market: LT, industry: "medicinos įranga", campaign_types: [traffic, calls], currency: EUR, targets: {}, spend_30d: 448,
+     notes: "Be griežto targeto — stebėti srauto rodiklius (CPC/CTR) ir skambučių skaičių bei kokybę. Gyvas JŲ PAČIŲ accountas (GHS 1008139159711307 tuščias). Istoriškai Pixel sekimo problemos."}
+  - {account_id: "285905716159639",   name: "UnoSol",          business: "UnoSol",              active: true, excluded: false, tier: auto, market: LT, industry: "saulės elektrinės", campaign_types: [leads], currency: EUR, targets: {cpl: 6}, spend_30d: 0,
+     notes: "CPL: B2C 5–6 €, B2B iki 10 € — pagal kampanijos segmentą. 0 spend 30 d. snapshot'e — jei neatsinaujins, perkelti į inactive."}
 
-  # --- Greenhill Studio (GHS) grupė — „visi mano, apart kelių": excluded patvirtinti interview metu ---
-  - {account_id: "2565053253541045", name: "GHS",                   business: "GHS", active: true, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: ""}
-  - {account_id: "2727531717281897", name: "Jonas Vinduer",         business: "GHS", active: true, excluded: false, tier: auto, market: LT, industry: "langai", campaign_types: [], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: ""}
-  - {account_id: "3398945290190889", name: "WiseTeam",              business: "GHS", active: true, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: ""}
-  - {account_id: "614347369251494",  name: "VK",                    business: "GHS", active: true, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: "be payment method — tikėtinas kandidatas į excluded"}
-  - {account_id: "5525788197446523", name: "Pupa Supa",             business: "GHS", active: true, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: ""}
-  - {account_id: "232080695337280",  name: "Manogarantijos.lt",     business: "GHS", active: true, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: ""}
-  - {account_id: "145882250606217",  name: "Fi Clinica",            business: "GHS", active: true, excluded: false, tier: auto, market: LT, industry: "klinika", campaign_types: [], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: ""}
-  - {account_id: "1008139159711307", name: "Vibramedica",           business: "GHS", active: true, excluded: false, tier: auto, market: LT, industry: "medicina", campaign_types: [], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: "buvusios Pixel sekimo problemos (žr. mėn. ataskaitas)"}
-  - {account_id: "168963711821683",  name: "OKNP (GHS)",            business: "GHS", active: true, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: "be payment method"}
-  - {account_id: "511826803499801",  name: "Samsonas Rally Rokiškis", business: "GHS", active: true, excluded: false, tier: auto, market: LT, industry: "renginys", campaign_types: [awareness], currency: EUR, targets: {cpl: null, cps: null, roas: null, cpm: null}, notes: "sezoninis — renginio kampanijos"}
+  # ── SUSTABDYTI / NEBEDIRBAM (interviu 2026-07-22) ────────────────────
+  - {account_id: "25719768167711394", name: "Power Rabbit",    business: "PowerRabbit Lietuva", active: false, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [awareness], currency: EUR, targets: {}, notes: "Klientas sustojęs 2026-07 — nenustatinėjame, kol nedirbame."}
+  - {account_id: "420321025126676",   name: "Clinic Agatas (USD)", business: "Clinic Agatas",   active: false, excluded: false, tier: auto, market: LT, industry: "klinika", campaign_types: [calls], currency: USD, targets: {}, notes: "Nedirbame dabar; jei pradės vėl — pasakys."}
+  - {account_id: "864552845224362",   name: "Clinic Agatas (GHS EUR)", business: "Clinic Agatas", active: false, excluded: false, tier: auto, market: LT, industry: "klinika", campaign_types: [calls], currency: EUR, targets: {}, notes: "Kaip viršuje."}
+  - {account_id: "699485319671369",   name: "Naikinta",        business: "UAB Naikinta",        active: false, excluded: false, tier: auto, market: LT, industry: "kenkėjų kontrolė", campaign_types: [leads], currency: EUR, targets: {}, notes: "Kampanija sustabdyta 2026-07."}
+  - {account_id: "702984183760378",   name: "HYGGE Lietuva",   business: "HYGGE Lietuva",       active: false, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {}, notes: "Sustabdytas klientas."}
+  - {account_id: "417656152966870",   name: "ActionCOACH",     business: "Actioncoach Baltic",  active: false, excluded: false, tier: auto, market: LT, industry: "B2B koučingas", campaign_types: [leads], currency: EUR, targets: {}, notes: "Netikrinti (interviu 2026-07-22)."}
+  - {account_id: "857146253775803",   name: "Iosomo",          business: "Iosomo",              active: false, excluded: false, tier: auto, market: LT, industry: "", campaign_types: [], currency: EUR, targets: {}, notes: "Netikrinti (interviu 2026-07-22)."}
 
-# Neįtraukti (snapshot'e DISABLED/CLOSED/UNSETTLED arba MCP dar neįjungtas):
-#   WEB Partners (868844499804276, MCP rollout), Austė (3130879840262776, MCP rollout),
-#   OKNP/Oknoknpvk (233381131172201, MCP rollout), 320609455758106 (MCP rollout),
-#   Two Wheels Empire (972246972969300, UNSETTLED), WallMountFor (1504602114646206, UNSETTLED),
-#   vytautas/kestutis (791807671274541, UNSETTLED), Shade City (676563343276838, DISABLED),
-#   Folkas / O kodėl ne pica? / Heri Green (DISABLED) ir visi CLOSED.
-# MCP snapshot'e buvo next_cursor — INTERVIEW režimas privalo persitraukti pilną sąrašą.
+# ── NEAPKLAUSTI accountai ──────────────────────────────────────────────
+# Interviu nutrūko prieš šiuos (galimai gyvi, bet nepatvirtinti): LULULU, Groomy.lt,
+# SA - Arena Pizza, ADMEN, AutoPRO, PRO sprendimai / GHS - fotoPro, Juolab media,
+# O kodėl ne? / O kodėl ne sumuštinis?, Mamos diena, ir visa GHS uodega
+# (Jonas Vinduer, WiseTeam, Pupa Supa, Manogarantijos, Fi Clinica, Samsonas Rally,
+#  VisitSiauliai, BerlinMonroe, Flori.lt 2, doup.lt, ndt.lt, Svenceles Salos,
+#  Capital Marine, Elegant Line GBP, Premium kemperiai, Medžio dizainas,
+#  Rumšiškių baldai, RonerGroup, Trapfest, Deguva, Arena Billiards, Arthangers,
+#  TWE, uniquetma, jahont, evchargeplus, Audrafestival, Vaiku Pasaulis) bei
+# savarankiški (Kambo Kombucha, HLC plus, Senoji baldinė, Hill Garden, PROSPECTORS,
+#  U&L, Explorway, Ishoro, annika.lt, Tutum, Chase Calm, Neoreklama,
+#  Rimantas Steponavičius, Timy Cars, Metruna, Centro odontologai, Hotfiks,
+#  The Covers Company, muzikiniszaidimas.lt, Migla, GG Clothing, Stogo Konstrukcija,
+#  MB Mūsų projektai ×3, Vaikų dienos centras, Ambalai TV, TATK, VR LOCKS,
+#  WallMountFor / GP ads, Ąžuolų namai OLD, Miles Wambaugh, Informacinės
+#  konsultacijos, AJ events, TEST, be pavadinimo ×3).
+# Jie NIGHTLY netikrinami. WATCH režimo mėnesinis spend sweep'as praneš, jei kuris
+# pradės leisti pinigus — tada pridėti per INTERVIEW.
