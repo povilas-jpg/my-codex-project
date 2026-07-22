@@ -1,8 +1,8 @@
 ---
-name: daily-meta
+name: daily-meta-v2
 description: >
   Daily Meta Ads optimization routine for all SocialAds client ad accounts (Povilas). Trigger on:
-  /daily-meta, "daily checkas", "daily check", "kaip kampanijos?", "kaip reklamos?", the nightly
+  /daily-meta-v2, "daily v2", "daily checkas", "daily check", "kaip kampanijos?", "kaip reklamos?", the nightly
   scheduled run (3:00 Europe/Vilnius, unattended), "savaitės apžvalga", "vykdyk" followed by numbers
   (executes previously proposed actions), "interviu" / "nustatom targetus" (per-client target setup),
   or any request to review, monitor or optimize Meta Ads performance across clients. Pulls insights
@@ -10,7 +10,7 @@ description: >
   dark-theme trend charts, and outputs a Lithuanian daily brief with numbered action proposals.
   NEVER executes changes without explicit approval ("vykdyk N"). Also trigger on terse cues like
   "paleisk daily" or a morning greeting asking about ad performance. Single-client CHECK mode
-  triggers on "patikrink {klientas}", "/daily-meta {klientas}", "kaip Gama?", "kas su Petplius?",
+  triggers on "patikrink {klientas}", "/daily-meta-v2 {klientas}", "kaip Gama?", "kas su Petplius?",
   "parodyk {klientas} situaciją" — runs the same pipeline for that client only, on demand.
 ---
 
@@ -41,8 +41,8 @@ ZERO_SPEND_CADENCE = weekly # registry-active accounts with 7d spend = 0 → che
 
 | Mode | Trigger | What happens |
 |---|---|---|
-| NIGHTLY | scheduled 3:00 run, /daily-meta, "daily checkas" | Health scan + rules + charts + LT brief with proposals |
-| CHECK | "patikrink {klientas}", "kaip {klientas}?", "/daily-meta {klientas}" | NIGHTLY pipeline for ONE client (or a named subset), on demand, with extra depth |
+| NIGHTLY | scheduled 3:00 run, /daily-meta-v2, "daily checkas" | Health scan + rules + charts + LT brief with proposals |
+| CHECK | "patikrink {klientas}", "kaip {klientas}?", "/daily-meta-v2 {klientas}" | NIGHTLY pipeline for ONE client (or a named subset), on demand, with extra depth |
 | WEEKLY | NIGHTLY on Monday, "savaitės apžvalga" | NIGHTLY + closed-week 7v7 deep-dive, fatigue triage, queued LOW-tier proposals |
 | EXECUTE | "vykdyk 1,3" / "vykdyk visus" | Execute approved proposals via Meta MCP, log, confirm |
 | INTERVIEW | "interviu", "nustatom targetus", unassigned account found | Per-client target/profile Q&A → clients.yaml |
