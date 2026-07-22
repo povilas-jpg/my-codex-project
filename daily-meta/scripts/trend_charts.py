@@ -173,6 +173,7 @@ def render_portfolio(data, outdir):
         ax.set_facecolor(BG)
         ax.axis("off")
         _, kpis, _ = parse_series(c.get("series", []))
+        kpis = rolling7(kpis)  # smoothed sparkline — direction, not daily noise
         pts = [(j, v) for j, v in enumerate(kpis) if v is not None]
         if len(pts) >= 2:
             xs, ys = zip(*pts)

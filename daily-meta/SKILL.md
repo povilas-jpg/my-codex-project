@@ -22,16 +22,17 @@ Decision rules with IDs and thresholds: `references/rules.md`. Output templates 
 ## Config (edit here, referenced everywhere)
 
 ```
-STOP_LOSS_MULT   = 2.0      # K1: spend ≥ 2× target CPA, 0 conversions, last 3 d
-TIER_SPLIT       = 50       # €/day; trailing-30d spend/day < 50 → LOW, else BIG
-FREQ_ACTION      = 3.5      # F1: 7-day frequency action threshold (prospecting)
-FREQ_EMERGENCY   = 4.5      # F2: same-day creative-replacement proposal
-PROVISIONAL_DAYS = 3        # W5: D-1..D-3 conversions marked "dar sėda"
-PACING_TOL       = 0.15     # H4: ±15% cumulative pacing deviation, 3+ consecutive days
-CPM_SPIKE        = 0.20     # H6: ad set CPM +20% vs trailing 7d avg
-BATCH_SIZE       = 3        # accounts processed per batch, sequentially (MCP rate limits)
+Thresholds live in `scripts/evaluate.py` CFG (single source of truth): STOP_LOSS_MULT=2.0,
+TIER_SPLIT=€50/d, FREQ_ACTION=3.5, FREQ_EMERGENCY=4.5, MIN_CONV_VERDICT=20 (clicks 300),
+verdict bands ±10% (n≥50) / ±20%, K2/S1/T1 guards. Skill-level settings:
+
+```
+BATCH_SIZE       = 3        # accounts per batch, sequential (MCP rate limits)
 WEEKLY_DAY       = Monday   # deep-dive extends the nightly run
 LOOKBACK_DAYS    = 35       # daily series fetched per account
+MONDAY_CHART_CAP = 10       # detail PNGs on Monday: non-🟢 + top 3 movers, max this
+ZERO_SPEND_CADENCE = weekly # registry-active accounts with 7d spend = 0 → check Mondays only
+```
 ```
 
 ## Modes
@@ -74,41 +75,42 @@ for daily series, `ads_get_ad_entities` for campaign/ad set/ad statuses+budgets+
   (e.g. Argus: 54KB for 15d) — when a response lands in a tool-results file, parse it with
   python/jq from the file; never paste it into context. Cross-check: Σ(campaign daily spend) must
   match the account 30d spend within 1%.
-- 7-day frequency per active campaign/ad set (prospecting vs retargeting — retargeting tolerates
-  freq up to 8–10, rule F6).
-- Entity statuses: effective_status, learning phase status, daily budgets, bid strategy.
-- Account-level errors: payment, restrictions, rejected ads.
-- Recent significant edits (activity log) → learning clocks (see State).
+- 7-day frequency: campaign level, `date_preset=last_7d`, NO time_increment, fields
+  [frequency, spend, impressions, delivery] — validated method. Mark retargeting campaigns
+  (name contains rem/retarget) for F6 tolerance.
+- Ad-set attributes (no date range): fields [id, name, delivery, effective_status] —
+  `delivery.substatuses` exposes learning/learning_limited/not_delivering; this is the G1
+  learning gate source. Only flag issues whose parent entity is ACTIVE.
+- Account-level errors (`ads_get_errors`): payment, restrictions, rejected ads — filter to
+  ACTIVE parents.
+- Activity log (`ads_account_get_activity_logs`): TRY it — still rolling out (2026-07 most
+  accounts return a rollout error); on failure fall back to state.json learning clocks +
+  campaign age from the daily series. `ads_insights_anomaly_signal` is optional garnish —
+  tested empty on both small and big accounts; never build alerts on it alone.
 
 **2. Health scan** — rules H1–H7 (`references/rules.md`). H1–H3 are EMERGENCY: always same-day,
 every tier, top of the brief.
 
-**3. Metrics frame** (keep the v1 comparison set, add discipline):
-- Yesterday vs D-2, vs 7d avg, vs 30d avg; closed 7d (D-8..D-2) vs prior 7d ALIGNED BY WEEKDAY;
-  30v30.
-- Primary KPI per campaign type — reuse `detect_campaign_type()` and the KPI table from the
-  `meta-ads-report` skill (sales→ROAS, leads→CPL, calls→CPS, awareness→CPM, engagement→CPE).
-- Weighted ROAS: revenue = Σ(spend×ROAS over ROAS rows); denominator = TOTAL spend, never
-  notna-only (v2 correction).
-- D-1..D-3 conversion metrics are PROVISIONAL (W5): usable for display with "(dar sėda)", never
-  as the sole basis of a K/S proposal. K1's 3-day window intentionally includes provisional days —
-  it is a 0-conversion spend guard, not a CPA verdict.
+**3.–5. Deterministic evaluation — NEVER compute metrics or rules by hand:**
+- Build `outputs/daily-meta/{date}/input.json` from the fetched data (exact schema in
+  `scripts/evaluate.py` docstring: per client — targets, campaigns with daily
+  [date, spend, results, roas] rows, freq7, delivery_issues with `parent_active`,
+  account_errors). Filter delivery issues: only entities whose PARENT is ACTIVE
+  (paused-parent "not delivering" is noise — verified 2026-07-22).
+- Run `python3 scripts/evaluate.py input.json outdir`. It computes windows
+  (mature7 D-9..D-3 vs prior7 D-16..D-10, W5-safe), weighted ROAS (total-spend
+  denominator), statistical verdict gates (≥20 conversions per window, ±10/20% bands),
+  rules K1/K2/S1/F1/F2/H3/H5/T1, tier gating and 🟢🟡🔴 statuses → `alerts.json` +
+  `chart_data.json`.
+- The brief's every number comes from `alerts.json`. The agent adds context, causes and
+  narrative (e.g. which campaign drags ROAS, provisional recovery "(dar sėda)") — but never
+  recomputes or overrides the engine's numbers. Guardrails G1–G10 still bind the narrative
+  and proposals (learning silence, ±20% budget steps, bid-strategy respect).
 
-**4. Rule evaluation** — tier-gated:
-- LOW: health scan + trend verdict only; K/S/F proposals queue into state for Monday. Exceptions
-  (same-day even for LOW): H1–H3, K1, F2.
-- BIG: full K (kill), S (scale), F (fatigue) evaluation daily.
-- Respect guardrails G1–G10 (`references/rules.md`) — especially: G1 no proposals for entities in
-  learning / first 72h / Learning Limited hitting target (silence); G5 budget proposals ±20% max,
-  one per entity per 2–4 d; G6 respect existing bid strategies.
-
-**5. Verdict per client** — 🟢🟡🔴 + kryptis (gerėja/blogėja/stabilu) per the computation in
-`references/rules.md` ("Krypties verdiktas"). Build the chart-JSON entry (schema in
-`scripts/trend_charts.py` docstring).
-
-**6. Render** — write chart JSON to `outputs/daily-meta/{date}/data.json`, run:
-`python3 scripts/trend_charts.py outputs/daily-meta/{date}/data.json outputs/daily-meta/{date}/`
-(add `--all` on Monday). Clients sorted 🔴→🟡→🟢, within group by spend desc.
+**6. Render** — `python3 scripts/trend_charts.py {outdir}/chart_data.json {outdir}/`
+(evaluate.py already sorted clients 🔴→🟡→🟢, by spend desc within group). Detail PNGs:
+daily = flagged clients only; Monday = non-🟢 + top 3 movers, `MONDAY_CHART_CAP` max —
+never a 32-PNG wall.
 
 **7. Brief** — assemble per `references/output-format.md`, attach portfolio grid + flagged-client
 PNGs. Numbered proposals with rule citations. End with the "vykdyk" instruction line. Nothing else.

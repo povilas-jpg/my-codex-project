@@ -57,7 +57,7 @@ Konfigūracijos konstantos (keičiamos SKILL.md viršuje): `STOP_LOSS_MULT=2.0`,
 | W2 | Vertinimo langas | 5–7 d. iki CPA/ROAS verdikto; CTR skaitymui min 1 000 impressions + 20–30 clicks | [C] |
 | W3 | Post-edit užšaldymas | significant edit = relaunch (~7 d. / 50 events iš naujo) | [M] |
 | W4 | Batch redagavimai | visi vieno entity pakeitimai — vienoje sesijoje (vienas resetas), ne po lašą kasdien | [C] |
-| W5 | Provizoriniai duomenys | D-1..D-3 konversijos/CPA/ROAS — „provisional" (sėda ~72 h, modeled vėluoja 24–72 h); sprendimai iš 7 d. langų arba mature window D-9..D-3; savaitė su savaite — tik ta pati savaitės diena | [M]/[C] |
+| W5 | Provizoriniai duomenys | D-1..D-3 konversijos/CPA/ROAS — „provisional" (sėda ~72 h, modeled vėluoja 24–72 h); VISI sprendimai iš mature window **D-9..D-3** vs D-16..D-10 (evaluate.py); K1 spend-guard'as — vienintelė išimtis (paskutinės 3 d., nes 0 konversijų + spend faktas nesėda) | [M]/[C] |
 | W6 | Pacing kantrybė | <15 % vienos dienos nuokrypis — ignoruoti | [C] |
 
 Kaina už nepaisymą: accountai su <20 % spend learning fazėje vs >50 % — ~68 % žemesnis CPA; išėjimas iš learning = ~19 % pigesnė konversija [M via agency].
@@ -99,11 +99,32 @@ Kaina už nepaisymą: accountai su <20 % spend learning fazėje vs >50 % — ~68
 | G9 | Valiuta — accounto native (Agatas = USD: $, ne €) |
 | G10 | Palyginimai, kertantys 2026-01-12 / 2026-03 atribucijos pakeitimus — su pastaba (7d/28d view nebeliko; clicks = tik link clicks + engage-through bucket) |
 
-## Krypties verdiktas (gerėja / blogėja / stabilu)
+## Krypties verdiktas (gerėja / blogėja / stabilu) — skaičiuoja `scripts/evaluate.py`
 
-Pagrindinis KPI (pagal kampanijos tipą iš `meta-ads-report` lentelės: sales→ROAS, leads→CPL, calls→CPS, awareness→CPM, engagement→cost/engagement):
-- Lyginti closed 7 d. (D-8..D-2, be vakar) vs prieš tai 7 d. (aligned weekdays).
-- `gerėja` — KPI pagerėjo >10 % (kryptis pagal KPI tipą: cost-KPI žemyn = gerai, ROAS aukštyn = gerai)
-- `blogėja` — KPI pablogėjo >10 %
-- `stabilu` — ±10 % ribose
-- Statusas: 🔴 = suveikė K/F2/H1–H3 taisyklė; 🟡 = suveikė kita H/F taisyklė arba blogėja 2 sav. iš eilės; 🟢 = niekas nesuveikė.
+Visi skaičiai iš deterministinio variklio (`evaluate.py`), NE iš agento galvos. Agentas prideda
+kontekstą ir pasakojimą, bet skaičių niekada neperskaičiuoja.
+
+Pagrindinis KPI pagal targetus/tipą: roas→ROAS (TIK sales kampanijos), cpl→CPL (leads),
+cps→CPS, cpm→CPM, traffic→CPC.
+- Langai: **mature7 = D-9..D-3** vs **prior7 = D-16..D-10** (abu pilnai „susėdę", W5). Vakar
+  dienos KPI rodomas tik kaip „(dar sėda)" kontekstas.
+- **Statistiniai gate'ai (prieš alert fatigue):** verdiktas TIK kai abiejuose languose
+  ≥`MIN_CONV_VERDICT` (20) konversijų (CPC atveju ≥300 clicks); kitaip — „per mažai duomenų",
+  jokios krypties. Juosta: ±10 %, kai abiejuose languose n≥50 (clicks ≥1000); kitaip ±20 %.
+- `gerėja`/`blogėja` — pokytis už juostos ribų atitinkama kryptimi; `stabilu` — juostos ribose.
+- **T1** (lygio taisyklė): mature7 KPI blogiau už targetą ≥20 % IR spend ≥5×target (ROAS: ≥100 €)
+  → 🟡 alertas. Saugo nuo mikro-imčių klaidingų aliarmų.
+- Statusas: 🔴 = K1/F2/H1–H3 (aktyvių entity!); 🟡 = K2/F1/H5/T1 arba (blogėja IR už targeto
+  ribos); 🟢 = niekas nesuveikė (kryptis vis tiek rodoma).
+
+## Žinomi duomenų apribojimai (validuota 2026-07-22)
+
+- **Activity log** (`ads_account_get_activity_logs`) dar ne visiems accountams (rollout) →
+  learning laikrodžiai best-effort: mūsų pačių veiksmų log'as (state.json) + kampanijos amžius
+  iš serijos (pirma spend diena) + ad-set `delivery.substatuses` (rodo learning būseną).
+- **`ads_insights_anomaly_signal`** — testuota ant mažo ir didelio accounto, abu tušti;
+  nepasikliauti, galima kviesti kaip papildomą signalą.
+- **H2/H3 filtras:** „not delivering" klaidos iš PAUSED tėvinių entity — triukšmas, ignoruoti.
+  Alertas tik kai tėvinis entity ACTIVE (išmokta iš Gama false alarm).
+- 7 d. frequency: kampanijų lygio kvietimas su `date_preset=last_7d` (be time_increment) —
+  veikia, naudoti F taisyklėms.
