@@ -134,7 +134,7 @@ def render_portfolio(data, outdir):
     clients = data["clients"]
     n = max(len(clients), 1)
     row_h = 0.52
-    fig_h = 1.1 + n * row_h
+    fig_h = 1.45 + n * row_h
     fig = plt.figure(figsize=(10.4, fig_h), facecolor=BG)
 
     date_lt = data.get("date", "")
@@ -142,7 +142,19 @@ def render_portfolio(data, outdir):
              fontsize=15, fontweight="bold", va="top")
     fig.text(0.045, 1 - 0.62 / fig_h, date_lt, color=MUTED, fontsize=9.5, va="top")
 
-    top = 1 - 0.95 / fig_h
+    # status legend, top-right at date height
+    ly = 1 - 0.50 / fig_h
+    for x, col, label in [(0.72, POS_SOFT, "● gerai"), (0.81, WARN, "● dėmesio"),
+                          (0.925, NEG_SOFT, "● reikia veiksmo")]:
+        fig.text(x, ly, label, color=col, fontsize=8, va="top")
+
+    # column headers
+    hy = 1 - 1.02 / fig_h
+    for x, ha, label in [(0.075, "left", "KLIENTAS"), (0.52, "center", "30 D. TRENDAS"),
+                         (0.685, "left", "SAV. vs SAV."), (0.965, "right", "KPI DABAR / TIKSLAS")]:
+        fig.text(x, hy, label, color=MUTED, fontsize=7.5, ha=ha, va="center")
+
+    top = 1 - 1.18 / fig_h
     for i, c in enumerate(clients):
         y = top - i * (row_h / fig_h)
         yc = y - 0.5 * row_h / fig_h  # row center
