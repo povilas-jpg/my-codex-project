@@ -1,0 +1,9 @@
+{
+ "last_run": "2026-07-23T03:00:00+03:00",
+ "run_date": "2026-07-23",
+ "last_brief_proposals": [],
+ "learning_clocks": {},
+ "queued_low_tier": [],
+ "alert_dedup": {},
+ "note": "NIGHTLY unattended run. Activity log rollout-unavailable for most accounts; learning clocks best-effort."
+}
