@@ -1,0 +1,930 @@
+{
+  "clients": [
+    {
+      "name": "Vibramedica",
+      "account_id": "268797424916238",
+      "currency": "EUR",
+      "tier": "auto",
+      "targets": {},
+      "campaign_types": [
+        "traffic",
+        "calls"
+      ],
+      "campaigns": [
+        {
+          "name": "Web Sales + Calls",
+          "objective": "OUTCOME_SALES",
+          "result_type": "Website purchases",
+          "active": true,
+          "days": [
+            [
+              "06-19",
+              25.52,
+              0,
+              null
+            ],
+            [
+              "06-20",
+              25.46,
+              0,
+              null
+            ],
+            [
+              "06-21",
+              19.2,
+              0,
+              null
+            ],
+            [
+              "06-22",
+              16.02,
+              0,
+              null
+            ],
+            [
+              "06-23",
+              15.67,
+              0,
+              null
+            ],
+            [
+              "06-24",
+              15.75,
+              0,
+              null
+            ],
+            [
+              "06-25",
+              14.85,
+              0,
+              null
+            ],
+            [
+              "06-26",
+              11.22,
+              0,
+              null
+            ],
+            [
+              "06-27",
+              12.15,
+              0,
+              null
+            ],
+            [
+              "06-28",
+              17.96,
+              0,
+              null
+            ],
+            [
+              "06-29",
+              16.04,
+              0,
+              null
+            ],
+            [
+              "06-30",
+              18.41,
+              0,
+              null
+            ],
+            [
+              "07-01",
+              14.16,
+              0,
+              null
+            ],
+            [
+              "07-02",
+              13.77,
+              0,
+              null
+            ],
+            [
+              "07-03",
+              12.17,
+              0,
+              null
+            ],
+            [
+              "07-04",
+              12.34,
+              0,
+              null
+            ],
+            [
+              "07-05",
+              16.11,
+              0,
+              null
+            ],
+            [
+              "07-06",
+              15.52,
+              0,
+              null
+            ],
+            [
+              "07-07",
+              14.73,
+              0,
+              null
+            ],
+            [
+              "07-08",
+              15.95,
+              0,
+              null
+            ],
+            [
+              "07-09",
+              16.53,
+              0,
+              null
+            ],
+            [
+              "07-10",
+              13.58,
+              0,
+              null
+            ],
+            [
+              "07-11",
+              12.46,
+              0,
+              null
+            ],
+            [
+              "07-12",
+              14.4,
+              0,
+              null
+            ],
+            [
+              "07-13",
+              12.36,
+              0,
+              null
+            ],
+            [
+              "07-14",
+              0.3,
+              0,
+              null
+            ],
+            [
+              "07-15",
+              21.15,
+              0,
+              null
+            ],
+            [
+              "07-16",
+              17.69,
+              0,
+              null
+            ],
+            [
+              "07-17",
+              19.76,
+              0,
+              null
+            ],
+            [
+              "07-18",
+              19.28,
+              0,
+              null
+            ],
+            [
+              "07-19",
+              17.29,
+              0,
+              null
+            ],
+            [
+              "07-20",
+              14.54,
+              0,
+              null
+            ],
+            [
+              "07-21",
+              15.76,
+              0,
+              null
+            ],
+            [
+              "07-22",
+              14.46,
+              0,
+              null
+            ],
+            [
+              "07-23",
+              13.19,
+              0,
+              null
+            ]
+          ]
+        },
+        {
+          "name": "Instagram post: 👉 Norite sužinoti daugiau ir/arba...",
+          "objective": "LINK_CLICKS",
+          "result_type": null,
+          "active": true,
+          "days": []
+        }
+      ],
+      "freq7": [
+        {
+          "name": "Web Sales + Calls",
+          "frequency": 3.183315,
+          "retargeting": false
+        }
+      ],
+      "delivery_issues": [
+        {
+          "entity": "adset",
+          "name": "DEM",
+          "parent_active": true,
+          "message": "warning: learning_exit_unsuccessfully (campaign: Web Sales + Calls)"
+        },
+        {
+          "entity": "adset",
+          "name": "kns-30+post/story",
+          "parent_active": false,
+          "message": "error: with_issues - Setup error: detailed targeting options combined, ad set not delivering (parent campaign Sales-neuro is PAUSED)"
+        }
+      ],
+      "account_errors": []
+    },
+    {
+      "name": "Stogo Konstrukcija",
+      "account_id": "419644914203233",
+      "currency": "EUR",
+      "tier": "auto",
+      "targets": {},
+      "campaign_types": [],
+      "campaigns": [
+        {
+          "name": "Engagement campaign EE",
+          "objective": "OUTCOME_ENGAGEMENT",
+          "result_type": "Interactions",
+          "active": true,
+          "days": [
+            [
+              "06-19",
+              6.16,
+              4,
+              null
+            ],
+            [
+              "06-20",
+              3.42,
+              3,
+              null
+            ],
+            [
+              "06-21",
+              4.88,
+              7,
+              null
+            ],
+            [
+              "06-22",
+              5.35,
+              3,
+              null
+            ],
+            [
+              "06-23",
+              5.67,
+              6,
+              null
+            ],
+            [
+              "06-24",
+              5.51,
+              5,
+              null
+            ],
+            [
+              "06-25",
+              4.62,
+              6,
+              null
+            ],
+            [
+              "06-26",
+              4.89,
+              7,
+              null
+            ],
+            [
+              "06-27",
+              3.9,
+              3,
+              null
+            ],
+            [
+              "06-28",
+              6.51,
+              2,
+              null
+            ],
+            [
+              "06-29",
+              5.21,
+              7,
+              null
+            ],
+            [
+              "06-30",
+              5.6,
+              2,
+              null
+            ],
+            [
+              "07-01",
+              5.31,
+              0,
+              null
+            ],
+            [
+              "07-02",
+              5.91,
+              1,
+              null
+            ],
+            [
+              "07-03",
+              3.88,
+              1,
+              null
+            ],
+            [
+              "07-04",
+              2.52,
+              2,
+              null
+            ],
+            [
+              "07-05",
+              5.55,
+              7,
+              null
+            ],
+            [
+              "07-06",
+              5.14,
+              1,
+              null
+            ],
+            [
+              "07-07",
+              4.59,
+              2,
+              null
+            ],
+            [
+              "07-08",
+              4.6,
+              1,
+              null
+            ],
+            [
+              "07-09",
+              4.89,
+              1,
+              null
+            ],
+            [
+              "07-10",
+              4.8,
+              2,
+              null
+            ],
+            [
+              "07-11",
+              5.4,
+              0,
+              null
+            ],
+            [
+              "07-12",
+              5.46,
+              1,
+              null
+            ],
+            [
+              "07-13",
+              4.83,
+              0,
+              null
+            ],
+            [
+              "07-14",
+              4.83,
+              1,
+              null
+            ],
+            [
+              "07-15",
+              4.7,
+              4,
+              null
+            ],
+            [
+              "07-16",
+              4.85,
+              1,
+              null
+            ],
+            [
+              "07-17",
+              5.04,
+              1,
+              null
+            ],
+            [
+              "07-18",
+              5.24,
+              2,
+              null
+            ],
+            [
+              "07-19",
+              6.21,
+              7,
+              null
+            ],
+            [
+              "07-20",
+              5.25,
+              0,
+              null
+            ],
+            [
+              "07-21",
+              4.6,
+              2,
+              null
+            ],
+            [
+              "07-22",
+              4.46,
+              1,
+              null
+            ],
+            [
+              "07-23",
+              4.82,
+              1,
+              null
+            ]
+          ]
+        },
+        {
+          "name": "Engagement campaign LT",
+          "objective": "OUTCOME_ENGAGEMENT",
+          "result_type": "Interactions",
+          "active": true,
+          "days": [
+            [
+              "06-19",
+              5.55,
+              22,
+              null
+            ],
+            [
+              "06-20",
+              3.46,
+              6,
+              null
+            ],
+            [
+              "06-21",
+              4.5,
+              16,
+              null
+            ],
+            [
+              "06-22",
+              4.53,
+              17,
+              null
+            ],
+            [
+              "06-23",
+              5.34,
+              16,
+              null
+            ],
+            [
+              "06-24",
+              3.96,
+              20,
+              null
+            ],
+            [
+              "06-25",
+              4.7,
+              19,
+              null
+            ],
+            [
+              "06-26",
+              5.91,
+              21,
+              null
+            ],
+            [
+              "06-27",
+              6.02,
+              19,
+              null
+            ],
+            [
+              "06-28",
+              7.23,
+              26,
+              null
+            ],
+            [
+              "06-29",
+              6.2,
+              26,
+              null
+            ],
+            [
+              "06-30",
+              4.39,
+              19,
+              null
+            ],
+            [
+              "07-01",
+              4.9,
+              14,
+              null
+            ],
+            [
+              "07-02",
+              3.82,
+              12,
+              null
+            ],
+            [
+              "07-03",
+              4.13,
+              15,
+              null
+            ],
+            [
+              "07-04",
+              4.21,
+              13,
+              null
+            ],
+            [
+              "07-05",
+              5.38,
+              14,
+              null
+            ],
+            [
+              "07-06",
+              5.6,
+              10,
+              null
+            ],
+            [
+              "07-07",
+              4.93,
+              8,
+              null
+            ],
+            [
+              "07-08",
+              4.42,
+              6,
+              null
+            ],
+            [
+              "07-09",
+              4.09,
+              5,
+              null
+            ],
+            [
+              "07-10",
+              5.1,
+              7,
+              null
+            ],
+            [
+              "07-11",
+              5.25,
+              5,
+              null
+            ],
+            [
+              "07-12",
+              4.6,
+              4,
+              null
+            ],
+            [
+              "07-13",
+              8.75,
+              5,
+              null
+            ],
+            [
+              "07-14",
+              4.16,
+              6,
+              null
+            ],
+            [
+              "07-15",
+              4.33,
+              9,
+              null
+            ],
+            [
+              "07-16",
+              4.33,
+              9,
+              null
+            ],
+            [
+              "07-17",
+              3.95,
+              6,
+              null
+            ],
+            [
+              "07-18",
+              4.78,
+              2,
+              null
+            ],
+            [
+              "07-19",
+              5.91,
+              7,
+              null
+            ],
+            [
+              "07-20",
+              4.82,
+              6,
+              null
+            ],
+            [
+              "07-21",
+              4.82,
+              6,
+              null
+            ],
+            [
+              "07-22",
+              4.76,
+              2,
+              null
+            ],
+            [
+              "07-23",
+              5.01,
+              1,
+              null
+            ]
+          ]
+        },
+        {
+          "name": "KATUSE KONSTRUKTSIOON ENGAGEMENT – 2026",
+          "objective": "OUTCOME_ENGAGEMENT",
+          "result_type": "Interactions",
+          "active": false,
+          "days": []
+        },
+        {
+          "name": "Stogokonstrukcija ENGAGEMENT – 2025 08",
+          "objective": "OUTCOME_ENGAGEMENT",
+          "result_type": "Interactions",
+          "active": false,
+          "days": []
+        },
+        {
+          "name": "Stogokonstrukcija ENGAGEMENT",
+          "objective": "OUTCOME_ENGAGEMENT",
+          "result_type": "Interactions",
+          "active": false,
+          "days": []
+        }
+      ],
+      "freq7": [
+        {
+          "name": "Engagement campaign EE",
+          "frequency": 2.815809,
+          "retargeting": false
+        },
+        {
+          "name": "Engagement campaign LT",
+          "frequency": 1.962542,
+          "retargeting": false
+        }
+      ],
+      "delivery_issues": [],
+      "account_errors": []
+    },
+    {
+      "name": "Rumšiškių baldai",
+      "account_id": "845476730453855",
+      "currency": "EUR",
+      "tier": "auto",
+      "targets": {},
+      "campaign_types": [],
+      "campaigns": [
+        {
+          "name": "Sales prekės 2025/12/19 - Copy",
+          "objective": "OUTCOME_SALES",
+          "result_type": "Website purchases",
+          "active": false,
+          "days": [
+            [
+              "06-19",
+              9.32,
+              0,
+              null
+            ],
+            [
+              "06-20",
+              8.77,
+              0,
+              null
+            ],
+            [
+              "06-21",
+              11.53,
+              0,
+              null
+            ],
+            [
+              "06-22",
+              11.36,
+              0,
+              null
+            ],
+            [
+              "06-23",
+              10.71,
+              0,
+              null
+            ],
+            [
+              "06-24",
+              9.66,
+              0,
+              null
+            ],
+            [
+              "06-25",
+              9.86,
+              0,
+              null
+            ],
+            [
+              "06-26",
+              9.07,
+              0,
+              null
+            ],
+            [
+              "06-27",
+              7.76,
+              0,
+              null
+            ],
+            [
+              "06-28",
+              11.53,
+              0,
+              null
+            ],
+            [
+              "06-29",
+              8.84,
+              0,
+              null
+            ],
+            [
+              "06-30",
+              11.23,
+              0,
+              null
+            ],
+            [
+              "07-01",
+              11.11,
+              0,
+              null
+            ],
+            [
+              "07-02",
+              9.41,
+              0,
+              null
+            ],
+            [
+              "07-03",
+              10.04,
+              0,
+              null
+            ],
+            [
+              "07-04",
+              7.83,
+              0,
+              null
+            ],
+            [
+              "07-05",
+              11.38,
+              0,
+              null
+            ],
+            [
+              "07-06",
+              10.72,
+              0,
+              null
+            ],
+            [
+              "07-07",
+              9.91,
+              0,
+              null
+            ],
+            [
+              "07-08",
+              10.57,
+              0,
+              null
+            ],
+            [
+              "07-09",
+              9.79,
+              1,
+              null
+            ],
+            [
+              "07-10",
+              8.63,
+              0,
+              null
+            ],
+            [
+              "07-11",
+              8.98,
+              0,
+              null
+            ],
+            [
+              "07-12",
+              11.35,
+              0,
+              null
+            ],
+            [
+              "07-13",
+              5.3,
+              0,
+              null
+            ]
+          ]
+        },
+        {
+          "name": "[11/17/2025] Promoting https://www.rumsiskiubaldai.lt/lt/",
+          "objective": "LINK_CLICKS",
+          "result_type": null,
+          "active": true,
+          "days": []
+        },
+        {
+          "name": "Post: \"Belgijoje gimusi XXa.vid. vitrina – rankų darbo...\"",
+          "objective": "OUTCOME_ENGAGEMENT",
+          "result_type": null,
+          "active": true,
+          "days": []
+        }
+      ],
+      "freq7": [],
+      "delivery_issues": [],
+      "account_errors": []
+    }
+  ]
+}
