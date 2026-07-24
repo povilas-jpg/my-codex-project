@@ -1,0 +1,1041 @@
+{
+  "clients": [
+    {
+      "name": "Vet Slėnis",
+      "account_id": "452358859575742",
+      "currency": "EUR",
+      "tier": "auto",
+      "targets": {
+        "roas": 8
+      },
+      "campaign_types": [
+        "sales"
+      ],
+      "campaigns": [
+        {
+          "name": "Vetslėnis | Sales | INT CBO | 2026-07",
+          "objective": "OUTCOME_SALES",
+          "result_type": "Website purchases",
+          "active": true,
+          "days": [
+            [
+              "07-13",
+              8.49,
+              0,
+              null
+            ],
+            [
+              "07-14",
+              16.3,
+              2,
+              9.3
+            ],
+            [
+              "07-15",
+              15.65,
+              4,
+              15.42
+            ],
+            [
+              "07-16",
+              13.74,
+              1,
+              5.09
+            ],
+            [
+              "07-17",
+              11.79,
+              0,
+              0.61
+            ],
+            [
+              "07-18",
+              15.26,
+              0,
+              null
+            ],
+            [
+              "07-19",
+              14.67,
+              2,
+              4.21
+            ],
+            [
+              "07-20",
+              18.61,
+              0,
+              0.53
+            ],
+            [
+              "07-21",
+              16.51,
+              2,
+              6.01
+            ],
+            [
+              "07-22",
+              13.57,
+              3,
+              16.07
+            ],
+            [
+              "07-23",
+              18.31,
+              4,
+              13.57
+            ]
+          ]
+        },
+        {
+          "name": "FB - Engagement",
+          "objective": "OUTCOME_ENGAGEMENT",
+          "result_type": "Post engagements",
+          "active": true,
+          "days": [
+            [
+              "07-01",
+              1.3,
+              6,
+              null
+            ],
+            [
+              "07-02",
+              2.4,
+              15,
+              null
+            ],
+            [
+              "07-03",
+              2.39,
+              18,
+              null
+            ],
+            [
+              "07-04",
+              2.38,
+              14,
+              null
+            ],
+            [
+              "07-05",
+              2.0,
+              17,
+              null
+            ],
+            [
+              "07-06",
+              2.21,
+              11,
+              null
+            ],
+            [
+              "07-07",
+              1.84,
+              15,
+              null
+            ],
+            [
+              "07-08",
+              1.97,
+              11,
+              null
+            ],
+            [
+              "07-09",
+              2.3,
+              23,
+              null
+            ],
+            [
+              "07-10",
+              1.86,
+              10,
+              null
+            ],
+            [
+              "07-11",
+              1.78,
+              14,
+              null
+            ],
+            [
+              "07-12",
+              1.96,
+              9,
+              null
+            ],
+            [
+              "07-13",
+              2.05,
+              12,
+              null
+            ],
+            [
+              "07-14",
+              2.13,
+              12,
+              null
+            ],
+            [
+              "07-15",
+              2.12,
+              15,
+              null
+            ],
+            [
+              "07-16",
+              1.79,
+              8,
+              null
+            ],
+            [
+              "07-17",
+              1.99,
+              8,
+              null
+            ],
+            [
+              "07-18",
+              1.93,
+              11,
+              null
+            ],
+            [
+              "07-19",
+              2.15,
+              5,
+              null
+            ],
+            [
+              "07-20",
+              1.94,
+              11,
+              null
+            ],
+            [
+              "07-21",
+              1.82,
+              11,
+              null
+            ],
+            [
+              "07-22",
+              1.97,
+              9,
+              null
+            ],
+            [
+              "07-23",
+              1.99,
+              9,
+              null
+            ]
+          ]
+        },
+        {
+          "name": "IG - Engagement",
+          "objective": "OUTCOME_ENGAGEMENT",
+          "result_type": "Post engagements",
+          "active": true,
+          "days": [
+            [
+              "07-01",
+              1.58,
+              2,
+              null
+            ],
+            [
+              "07-02",
+              2.39,
+              7,
+              null
+            ],
+            [
+              "07-03",
+              2.41,
+              8,
+              null
+            ],
+            [
+              "07-04",
+              2.4,
+              13,
+              null
+            ],
+            [
+              "07-05",
+              2.18,
+              12,
+              null
+            ],
+            [
+              "07-06",
+              2.18,
+              10,
+              null
+            ],
+            [
+              "07-07",
+              1.67,
+              6,
+              null
+            ],
+            [
+              "07-08",
+              2.01,
+              6,
+              null
+            ],
+            [
+              "07-09",
+              2.08,
+              3,
+              null
+            ],
+            [
+              "07-10",
+              2.09,
+              6,
+              null
+            ],
+            [
+              "07-11",
+              1.77,
+              5,
+              null
+            ],
+            [
+              "07-12",
+              2.13,
+              10,
+              null
+            ],
+            [
+              "07-13",
+              1.86,
+              10,
+              null
+            ],
+            [
+              "07-14",
+              2.27,
+              7,
+              null
+            ],
+            [
+              "07-15",
+              2.14,
+              8,
+              null
+            ],
+            [
+              "07-16",
+              2.1,
+              8,
+              null
+            ],
+            [
+              "07-17",
+              2.02,
+              7,
+              null
+            ],
+            [
+              "07-18",
+              1.43,
+              6,
+              null
+            ],
+            [
+              "07-19",
+              2.0,
+              4,
+              null
+            ],
+            [
+              "07-20",
+              2.37,
+              15,
+              null
+            ],
+            [
+              "07-21",
+              2.16,
+              10,
+              null
+            ],
+            [
+              "07-22",
+              2.34,
+              12,
+              null
+            ],
+            [
+              "07-23",
+              1.95,
+              8,
+              null
+            ]
+          ]
+        },
+        {
+          "name": "Vetslėnis | Sales | REM+ CBO | 2026-07",
+          "objective": "OUTCOME_SALES",
+          "result_type": "Website purchases",
+          "active": false,
+          "days": [
+            [
+              "07-13",
+              6.15,
+              0,
+              null
+            ],
+            [
+              "07-14",
+              11.48,
+              1,
+              10.99
+            ],
+            [
+              "07-15",
+              9.73,
+              1,
+              1.43
+            ],
+            [
+              "07-16",
+              8.11,
+              0,
+              null
+            ],
+            [
+              "07-17",
+              8.33,
+              0,
+              null
+            ],
+            [
+              "07-18",
+              10.4,
+              0,
+              null
+            ],
+            [
+              "07-19",
+              9.98,
+              0,
+              null
+            ],
+            [
+              "07-20",
+              3.3,
+              1,
+              11.42
+            ]
+          ]
+        },
+        {
+          "name": "FB/IG - Purchase - Marp",
+          "objective": "OUTCOME_SALES",
+          "result_type": "Website purchases",
+          "active": false,
+          "days": [
+            [
+              "06-19",
+              20.06,
+              1,
+              2.39
+            ],
+            [
+              "06-20",
+              21.39,
+              0,
+              null
+            ],
+            [
+              "06-21",
+              26.76,
+              0,
+              null
+            ],
+            [
+              "06-22",
+              26.3,
+              4,
+              4.67
+            ],
+            [
+              "06-23",
+              25.82,
+              2,
+              2.95
+            ],
+            [
+              "06-24",
+              24.64,
+              1,
+              2.11
+            ],
+            [
+              "06-25",
+              22.48,
+              8,
+              30.02
+            ],
+            [
+              "06-26",
+              23.88,
+              1,
+              0.5
+            ],
+            [
+              "06-27",
+              18.02,
+              0,
+              null
+            ],
+            [
+              "06-28",
+              26.47,
+              0,
+              null
+            ],
+            [
+              "06-29",
+              24.1,
+              4,
+              8.23
+            ],
+            [
+              "06-30",
+              29.93,
+              4,
+              8.73
+            ],
+            [
+              "07-01",
+              27.19,
+              4,
+              7.32
+            ],
+            [
+              "07-02",
+              21.03,
+              3,
+              3.9
+            ],
+            [
+              "07-03",
+              20.02,
+              1,
+              null
+            ],
+            [
+              "07-04",
+              15.18,
+              0,
+              null
+            ],
+            [
+              "07-05",
+              0.0,
+              1,
+              null
+            ],
+            [
+              "07-07",
+              0.0,
+              1,
+              null
+            ]
+          ]
+        }
+      ],
+      "freq7": [
+        {
+          "name": "Vetslėnis | Sales | INT CBO | 2026-07",
+          "frequency": 5.71,
+          "retargeting": false
+        },
+        {
+          "name": "FB - Engagement",
+          "frequency": 2.35,
+          "retargeting": false
+        },
+        {
+          "name": "IG - Engagement",
+          "frequency": 1.29,
+          "retargeting": false
+        },
+        {
+          "name": "Vetslėnis | Sales | REM+ CBO | 2026-07",
+          "frequency": 4.91,
+          "retargeting": true
+        }
+      ],
+      "delivery_issues": [
+        {
+          "entity": "adset",
+          "name": "INT Old video",
+          "parent_active": true,
+          "message": "warning: learning_exit_unsuccessfully (campaign: Vetslėnis | Sales | INT CBO | 2026-07)"
+        },
+        {
+          "entity": "adset",
+          "name": "REM",
+          "parent_active": false,
+          "message": "error: all_ads_in_error (parent campaign paused)"
+        },
+        {
+          "entity": "adset",
+          "name": "REM",
+          "parent_active": false,
+          "message": "error: all_ads_in_error (parent campaign paused)"
+        },
+        {
+          "entity": "adset",
+          "name": "REM",
+          "parent_active": false,
+          "message": "error: all_ads_in_error (parent campaign paused)"
+        },
+        {
+          "entity": "adset",
+          "name": "REM",
+          "parent_active": false,
+          "message": "error: all_ads_in_error (parent campaign paused)"
+        },
+        {
+          "entity": "adset",
+          "name": "INT",
+          "parent_active": false,
+          "message": "error: all_ads_in_error (parent campaign paused)"
+        }
+      ],
+      "account_errors": [
+        "IG - Engagement (ACTIVE): This ad is not delivering. Try creating a new ad set with different settings to begin delivering to your audience."
+      ]
+    },
+    {
+      "name": "WiseTeam",
+      "account_id": "3398945290190889",
+      "currency": "EUR",
+      "tier": "auto",
+      "targets": {
+        "cpl": 20
+      },
+      "campaign_types": [
+        "leads"
+      ],
+      "campaigns": [
+        {
+          "name": "Leads Evergreen",
+          "objective": "OUTCOME_LEADS",
+          "result_type": "Leads",
+          "active": true,
+          "days": [
+            [
+              "06-19",
+              14.64,
+              2,
+              null
+            ],
+            [
+              "06-20",
+              11.65,
+              0,
+              null
+            ],
+            [
+              "06-21",
+              16.99,
+              1,
+              null
+            ],
+            [
+              "06-22",
+              15.54,
+              0,
+              null
+            ],
+            [
+              "06-23",
+              15.03,
+              0,
+              null
+            ],
+            [
+              "06-24",
+              16.96,
+              1,
+              null
+            ],
+            [
+              "06-25",
+              15.23,
+              0,
+              null
+            ],
+            [
+              "06-26",
+              11.71,
+              0,
+              null
+            ],
+            [
+              "06-27",
+              13.54,
+              0,
+              null
+            ],
+            [
+              "06-28",
+              16.47,
+              0,
+              null
+            ],
+            [
+              "06-29",
+              16.41,
+              0,
+              null
+            ],
+            [
+              "06-30",
+              17.11,
+              1,
+              null
+            ],
+            [
+              "07-01",
+              17.19,
+              0,
+              null
+            ],
+            [
+              "07-02",
+              14.32,
+              1,
+              null
+            ],
+            [
+              "07-03",
+              13.11,
+              0,
+              null
+            ],
+            [
+              "07-04",
+              10.38,
+              1,
+              null
+            ],
+            [
+              "07-05",
+              16.08,
+              0,
+              null
+            ],
+            [
+              "07-06",
+              14.87,
+              0,
+              null
+            ],
+            [
+              "07-07",
+              17.43,
+              2,
+              null
+            ],
+            [
+              "07-08",
+              16.84,
+              0,
+              null
+            ],
+            [
+              "07-09",
+              15.53,
+              1,
+              null
+            ],
+            [
+              "07-10",
+              13.18,
+              0,
+              null
+            ],
+            [
+              "07-11",
+              11.05,
+              0,
+              null
+            ],
+            [
+              "07-12",
+              17.86,
+              0,
+              null
+            ],
+            [
+              "07-13",
+              18.98,
+              0,
+              null
+            ],
+            [
+              "07-14",
+              26.79,
+              0,
+              null
+            ],
+            [
+              "07-15",
+              25.08,
+              0,
+              null
+            ],
+            [
+              "07-16",
+              23.09,
+              0,
+              null
+            ],
+            [
+              "07-17",
+              21.64,
+              0,
+              null
+            ],
+            [
+              "07-18",
+              19.95,
+              2,
+              null
+            ],
+            [
+              "07-19",
+              31.31,
+              0,
+              null
+            ],
+            [
+              "07-20",
+              23.83,
+              1,
+              null
+            ],
+            [
+              "07-21",
+              26.46,
+              1,
+              null
+            ],
+            [
+              "07-22",
+              25.1,
+              0,
+              null
+            ],
+            [
+              "07-23",
+              22.85,
+              1,
+              null
+            ]
+          ]
+        }
+      ],
+      "freq7": [
+        {
+          "name": "Leads Evergreen",
+          "frequency": 2.24,
+          "retargeting": false
+        }
+      ],
+      "delivery_issues": [],
+      "account_errors": []
+    },
+    {
+      "name": "The Covers Company",
+      "account_id": "541603778283201",
+      "currency": "EUR",
+      "tier": "auto",
+      "targets": {
+        "roas": 4
+      },
+      "campaign_types": [
+        "sales"
+      ],
+      "campaigns": [
+        {
+          "name": "AG | Multi-GEO | Advantage+ | Discount campaign 12.04",
+          "objective": "OUTCOME_SALES",
+          "result_type": "Website purchases",
+          "active": true,
+          "days": [
+            [
+              "06-29",
+              15.56,
+              0,
+              null
+            ],
+            [
+              "06-30",
+              23.21,
+              0,
+              null
+            ],
+            [
+              "07-01",
+              20.27,
+              1,
+              null
+            ],
+            [
+              "07-02",
+              22.73,
+              2,
+              null
+            ],
+            [
+              "07-03",
+              22.05,
+              0,
+              null
+            ],
+            [
+              "07-04",
+              21.68,
+              0,
+              null
+            ],
+            [
+              "07-05",
+              18.73,
+              0,
+              null
+            ],
+            [
+              "07-06",
+              17.49,
+              2,
+              null
+            ],
+            [
+              "07-07",
+              18.13,
+              0,
+              null
+            ],
+            [
+              "07-08",
+              18.7,
+              5,
+              36.72
+            ],
+            [
+              "07-09",
+              19.62,
+              2,
+              null
+            ],
+            [
+              "07-10",
+              16.5,
+              1,
+              null
+            ],
+            [
+              "07-11",
+              16.07,
+              0,
+              null
+            ],
+            [
+              "07-12",
+              21.37,
+              3,
+              11.18
+            ],
+            [
+              "07-13",
+              19.44,
+              0,
+              null
+            ],
+            [
+              "07-14",
+              19.5,
+              2,
+              null
+            ],
+            [
+              "07-15",
+              15.43,
+              0,
+              null
+            ],
+            [
+              "07-16",
+              17.16,
+              0,
+              null
+            ],
+            [
+              "07-17",
+              17.36,
+              1,
+              null
+            ],
+            [
+              "07-18",
+              15.4,
+              0,
+              null
+            ],
+            [
+              "07-19",
+              24.0,
+              0,
+              null
+            ],
+            [
+              "07-20",
+              19.44,
+              1,
+              null
+            ],
+            [
+              "07-21",
+              17.71,
+              3,
+              null
+            ],
+            [
+              "07-22",
+              17.89,
+              1,
+              null
+            ],
+            [
+              "07-23",
+              16.27,
+              2,
+              null
+            ]
+          ]
+        }
+      ],
+      "freq7": [
+        {
+          "name": "AG | Multi-GEO | Advantage+ | Discount campaign 12.04",
+          "frequency": 2.32,
+          "retargeting": false
+        }
+      ],
+      "delivery_issues": [],
+      "account_errors": []
+    }
+  ]
+}
