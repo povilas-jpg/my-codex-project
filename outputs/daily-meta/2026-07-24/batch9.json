@@ -1,0 +1,1299 @@
+{
+ "clients": [
+  {
+   "name": "Deguva",
+   "account_id": "1071311104506111",
+   "currency": "EUR",
+   "tier": "auto",
+   "targets": {
+    "cpl": 4
+   },
+   "campaign_types": [
+    "leads"
+   ],
+   "campaigns": [
+    {
+     "name": "Leads 2026",
+     "objective": "OUTCOME_LEADS",
+     "result_type": "Leads (form)",
+     "active": true,
+     "days": [
+      [
+       "06-19",
+       8.03,
+       1,
+       null
+      ],
+      [
+       "06-20",
+       11.38,
+       4,
+       null
+      ],
+      [
+       "06-21",
+       11.69,
+       2,
+       null
+      ],
+      [
+       "06-22",
+       9.71,
+       2,
+       null
+      ],
+      [
+       "06-23",
+       8.94,
+       2,
+       null
+      ],
+      [
+       "06-24",
+       10.71,
+       4,
+       null
+      ],
+      [
+       "06-25",
+       10.02,
+       2,
+       null
+      ],
+      [
+       "06-26",
+       9.21,
+       3,
+       null
+      ],
+      [
+       "06-27",
+       9.68,
+       2,
+       null
+      ],
+      [
+       "06-28",
+       11.05,
+       4,
+       null
+      ],
+      [
+       "06-29",
+       10.28,
+       0,
+       null
+      ],
+      [
+       "06-30",
+       9.98,
+       3,
+       null
+      ],
+      [
+       "07-01",
+       10.98,
+       5,
+       null
+      ],
+      [
+       "07-02",
+       9.58,
+       1,
+       null
+      ],
+      [
+       "07-03",
+       8.83,
+       1,
+       null
+      ],
+      [
+       "07-04",
+       9.29,
+       6,
+       null
+      ],
+      [
+       "07-05",
+       11.39,
+       5,
+       null
+      ],
+      [
+       "07-06",
+       10.45,
+       1,
+       null
+      ],
+      [
+       "07-07",
+       9.84,
+       4,
+       null
+      ],
+      [
+       "07-08",
+       9.53,
+       1,
+       null
+      ],
+      [
+       "07-09",
+       9.36,
+       2,
+       null
+      ],
+      [
+       "07-10",
+       9.46,
+       0,
+       null
+      ],
+      [
+       "07-11",
+       0.8,
+       1,
+       null
+      ],
+      [
+       "07-17",
+       12.11,
+       4,
+       null
+      ],
+      [
+       "07-18",
+       17.41,
+       5,
+       null
+      ],
+      [
+       "07-19",
+       11.68,
+       2,
+       null
+      ],
+      [
+       "07-20",
+       9.67,
+       4,
+       null
+      ],
+      [
+       "07-21",
+       10.85,
+       4,
+       null
+      ],
+      [
+       "07-22",
+       9.98,
+       2,
+       null
+      ],
+      [
+       "07-23",
+       8.98,
+       2,
+       null
+      ]
+     ]
+    },
+    {
+     "name": "Leads 2025 – Copy",
+     "objective": "OUTCOME_LEADS",
+     "result_type": null,
+     "active": false,
+     "days": []
+    },
+    {
+     "name": "Leads 2025",
+     "objective": "OUTCOME_LEADS",
+     "result_type": null,
+     "active": false,
+     "days": []
+    },
+    {
+     "name": "Engagement",
+     "objective": "OUTCOME_ENGAGEMENT",
+     "result_type": null,
+     "active": false,
+     "days": []
+    },
+    {
+     "name": "Leads",
+     "objective": "OUTCOME_LEADS",
+     "result_type": null,
+     "active": false,
+     "days": []
+    },
+    {
+     "name": "Awareness",
+     "objective": "OUTCOME_AWARENESS",
+     "result_type": null,
+     "active": false,
+     "days": []
+    }
+   ],
+   "freq7": [
+    {
+     "name": "Leads 2026",
+     "frequency": 1.934872,
+     "retargeting": false
+    }
+   ],
+   "delivery_issues": [
+    {
+     "entity": "adset",
+     "name": "INT (Engagement campaign)",
+     "parent_active": false,
+     "message": "Setup error: this ad set is not delivering because it uses detailed targeting options that have been combined."
+    }
+   ],
+   "account_errors": [
+    "Ad not delivering (campaign 'Leads 2026', ACTIVE): This ad is not delivering. Try creating a new ad set with different settings to begin delivering to your audience."
+   ]
+  },
+  {
+   "name": "Solds",
+   "account_id": "25197936806460266",
+   "currency": "EUR",
+   "tier": "auto",
+   "targets": {},
+   "campaign_types": [
+    "traffic"
+   ],
+   "campaigns": [
+    {
+     "name": "SA - Traffic Kopos - Calls",
+     "objective": "LINK_CLICKS",
+     "result_type": "Phone calls placed",
+     "active": true,
+     "days": [
+      [
+       "06-19",
+       14.16,
+       1,
+       null
+      ],
+      [
+       "06-20",
+       16.68,
+       0,
+       null
+      ],
+      [
+       "06-21",
+       15.83,
+       1,
+       null
+      ],
+      [
+       "06-22",
+       13.53,
+       0,
+       null
+      ],
+      [
+       "06-23",
+       15.48,
+       1,
+       null
+      ],
+      [
+       "06-24",
+       14.5,
+       0,
+       null
+      ],
+      [
+       "06-25",
+       13.98,
+       1,
+       null
+      ],
+      [
+       "06-26",
+       13.38,
+       1,
+       null
+      ],
+      [
+       "06-27",
+       18.3,
+       2,
+       null
+      ],
+      [
+       "06-28",
+       15.79,
+       2,
+       null
+      ],
+      [
+       "06-29",
+       13.05,
+       1,
+       null
+      ],
+      [
+       "06-30",
+       15.36,
+       0,
+       null
+      ],
+      [
+       "07-01",
+       17.02,
+       0,
+       null
+      ],
+      [
+       "07-02",
+       12.89,
+       0,
+       null
+      ],
+      [
+       "07-03",
+       13.59,
+       3,
+       null
+      ],
+      [
+       "07-04",
+       15.85,
+       1,
+       null
+      ],
+      [
+       "07-05",
+       14.23,
+       1,
+       null
+      ],
+      [
+       "07-06",
+       12.06,
+       0,
+       null
+      ],
+      [
+       "07-07",
+       15.2,
+       0,
+       null
+      ],
+      [
+       "07-08",
+       16.34,
+       1,
+       null
+      ],
+      [
+       "07-09",
+       15.13,
+       2,
+       null
+      ],
+      [
+       "07-10",
+       14.9,
+       3,
+       null
+      ],
+      [
+       "07-11",
+       16.87,
+       0,
+       null
+      ],
+      [
+       "07-12",
+       15.57,
+       0,
+       null
+      ],
+      [
+       "07-13",
+       14.65,
+       0,
+       null
+      ],
+      [
+       "07-14",
+       15.19,
+       0,
+       null
+      ],
+      [
+       "07-15",
+       16.25,
+       0,
+       null
+      ],
+      [
+       "07-16",
+       13.4,
+       1,
+       null
+      ],
+      [
+       "07-17",
+       14.04,
+       0,
+       null
+      ],
+      [
+       "07-18",
+       15.01,
+       1,
+       null
+      ],
+      [
+       "07-19",
+       19.93,
+       4,
+       null
+      ],
+      [
+       "07-20",
+       12.67,
+       1,
+       null
+      ],
+      [
+       "07-21",
+       13.51,
+       0,
+       null
+      ],
+      [
+       "07-22",
+       12.62,
+       0,
+       null
+      ],
+      [
+       "07-23",
+       13.62,
+       2,
+       null
+      ]
+     ]
+    },
+    {
+     "name": "SA - Namas su baseinu (V. dalis) - Calls",
+     "objective": "LINK_CLICKS",
+     "result_type": "Phone calls placed",
+     "active": false,
+     "days": [
+      [
+       "07-09",
+       12.29,
+       1,
+       null
+      ],
+      [
+       "07-10",
+       16.93,
+       1,
+       null
+      ]
+     ]
+    },
+    {
+     "name": "SA - Vilniaus Džiazas - Calls",
+     "objective": "LINK_CLICKS",
+     "result_type": "Phone calls placed",
+     "active": false,
+     "days": [
+      [
+       "07-03",
+       12.8,
+       1,
+       null
+      ],
+      [
+       "07-04",
+       16.08,
+       0,
+       null
+      ],
+      [
+       "07-05",
+       12.62,
+       0,
+       null
+      ],
+      [
+       "07-06",
+       12.81,
+       0,
+       null
+      ],
+      [
+       "07-07",
+       13.92,
+       1,
+       null
+      ],
+      [
+       "07-08",
+       16.68,
+       1,
+       null
+      ],
+      [
+       "07-09",
+       14.1,
+       0,
+       null
+      ],
+      [
+       "07-10",
+       15.09,
+       3,
+       null
+      ],
+      [
+       "07-11",
+       18.59,
+       1,
+       null
+      ],
+      [
+       "07-12",
+       15.78,
+       0,
+       null
+      ],
+      [
+       "07-13",
+       14.61,
+       1,
+       null
+      ],
+      [
+       "07-14",
+       14.61,
+       0,
+       null
+      ],
+      [
+       "07-15",
+       9.26,
+       4,
+       null
+      ]
+     ]
+    },
+    {
+     "name": "SA - Traffic Valakampiai - Calls",
+     "objective": "LINK_CLICKS",
+     "result_type": "Phone calls placed",
+     "active": false,
+     "days": [
+      [
+       "06-19",
+       14.53,
+       0,
+       null
+      ],
+      [
+       "06-20",
+       15.66,
+       1,
+       null
+      ],
+      [
+       "06-21",
+       16.01,
+       0,
+       null
+      ],
+      [
+       "06-22",
+       14.06,
+       0,
+       null
+      ],
+      [
+       "06-23",
+       15.37,
+       2,
+       null
+      ],
+      [
+       "06-24",
+       15.15,
+       0,
+       null
+      ],
+      [
+       "06-25",
+       14.4,
+       0,
+       null
+      ],
+      [
+       "06-26",
+       13.97,
+       0,
+       null
+      ],
+      [
+       "06-27",
+       15.9,
+       0,
+       null
+      ],
+      [
+       "06-28",
+       16.27,
+       2,
+       null
+      ],
+      [
+       "06-29",
+       14.21,
+       0,
+       null
+      ],
+      [
+       "06-30",
+       15.99,
+       0,
+       null
+      ],
+      [
+       "07-01",
+       16.05,
+       1,
+       null
+      ],
+      [
+       "07-02",
+       14.01,
+       1,
+       null
+      ],
+      [
+       "07-03",
+       13.5,
+       0,
+       null
+      ],
+      [
+       "07-04",
+       13.84,
+       0,
+       null
+      ],
+      [
+       "07-05",
+       15.06,
+       0,
+       null
+      ],
+      [
+       "07-06",
+       12.93,
+       1,
+       null
+      ],
+      [
+       "07-07",
+       11.52,
+       1,
+       null
+      ]
+     ]
+    },
+    {
+     "name": "SA - Traffic Visorai - Calls",
+     "objective": "LINK_CLICKS",
+     "result_type": "Phone calls placed",
+     "active": false,
+     "days": [
+      [
+       "06-19",
+       15.14,
+       1,
+       null
+      ],
+      [
+       "06-20",
+       16.58,
+       1,
+       null
+      ],
+      [
+       "06-21",
+       16.3,
+       2,
+       null
+      ],
+      [
+       "06-22",
+       14.73,
+       1,
+       null
+      ],
+      [
+       "06-23",
+       15.91,
+       0,
+       null
+      ],
+      [
+       "06-24",
+       14.51,
+       2,
+       null
+      ],
+      [
+       "06-25",
+       13.84,
+       1,
+       null
+      ],
+      [
+       "06-26",
+       13.23,
+       1,
+       null
+      ],
+      [
+       "06-27",
+       16.22,
+       2,
+       null
+      ],
+      [
+       "06-28",
+       15.07,
+       0,
+       null
+      ],
+      [
+       "06-29",
+       14.4,
+       1,
+       null
+      ],
+      [
+       "06-30",
+       16.19,
+       3,
+       null
+      ],
+      [
+       "07-01",
+       16.46,
+       3,
+       null
+      ],
+      [
+       "07-02",
+       9.75,
+       0,
+       null
+      ]
+     ]
+    },
+    {
+     "name": "SA - Leads Kopos",
+     "objective": "OUTCOME_LEADS",
+     "result_type": null,
+     "active": false,
+     "days": []
+    },
+    {
+     "name": "SA - Traffic Valakampiai",
+     "objective": "LINK_CLICKS",
+     "result_type": null,
+     "active": false,
+     "days": []
+    },
+    {
+     "name": "Solds - IG Followers Traffic v3 ABO",
+     "objective": "LINK_CLICKS",
+     "result_type": null,
+     "active": false,
+     "days": []
+    },
+    {
+     "name": "Solds - Leads (EU)",
+     "objective": "OUTCOME_LEADS",
+     "result_type": null,
+     "active": false,
+     "days": []
+    },
+    {
+     "name": "Solds - Engagement - Darbo skelbimas",
+     "objective": "OUTCOME_ENGAGEMENT",
+     "result_type": null,
+     "active": false,
+     "days": []
+    },
+    {
+     "name": "Solds - IG Followers Traffic v2",
+     "objective": "LINK_CLICKS",
+     "result_type": null,
+     "active": false,
+     "days": []
+    },
+    {
+     "name": "Solds - Awareness",
+     "objective": "OUTCOME_AWARENESS",
+     "result_type": null,
+     "active": false,
+     "days": []
+    },
+    {
+     "name": "Solds - IG Followers Traffic",
+     "objective": "LINK_CLICKS",
+     "result_type": null,
+     "active": false,
+     "days": []
+    },
+    {
+     "name": "Solds - Engagement",
+     "objective": "OUTCOME_ENGAGEMENT",
+     "result_type": null,
+     "active": false,
+     "days": []
+    },
+    {
+     "name": "Solds - Leads",
+     "objective": "OUTCOME_LEADS",
+     "result_type": null,
+     "active": false,
+     "days": []
+    },
+    {
+     "name": "SA - Vilniaus Džiazas - Traffic Web",
+     "objective": "LINK_CLICKS",
+     "result_type": "Landing page views",
+     "active": true,
+     "days": [
+      [
+       "07-15",
+       11.41,
+       81,
+       null
+      ],
+      [
+       "07-16",
+       18.74,
+       137,
+       null
+      ],
+      [
+       "07-17",
+       18.02,
+       119,
+       null
+      ],
+      [
+       "07-18",
+       19.31,
+       143,
+       null
+      ],
+      [
+       "07-19",
+       24.88,
+       186,
+       null
+      ],
+      [
+       "07-20",
+       21.28,
+       157,
+       null
+      ],
+      [
+       "07-21",
+       18.12,
+       130,
+       null
+      ],
+      [
+       "07-22",
+       20.52,
+       145,
+       null
+      ],
+      [
+       "07-23",
+       7.46,
+       57,
+       null
+      ]
+     ]
+    },
+    {
+     "name": "SA - Namas su baseinu (V. dalis) - Traffic Web",
+     "objective": "LINK_CLICKS",
+     "result_type": "Landing page views",
+     "active": true,
+     "days": [
+      [
+       "07-10",
+       30.67,
+       422,
+       null
+      ],
+      [
+       "07-11",
+       40.07,
+       593,
+       null
+      ],
+      [
+       "07-12",
+       48.32,
+       564,
+       null
+      ],
+      [
+       "07-13",
+       46.25,
+       458,
+       null
+      ],
+      [
+       "07-14",
+       48.03,
+       418,
+       null
+      ],
+      [
+       "07-15",
+       51.73,
+       437,
+       null
+      ],
+      [
+       "07-16",
+       49.47,
+       423,
+       null
+      ],
+      [
+       "07-17",
+       51.22,
+       385,
+       null
+      ],
+      [
+       "07-18",
+       54.98,
+       447,
+       null
+      ],
+      [
+       "07-19",
+       52.58,
+       399,
+       null
+      ],
+      [
+       "07-20",
+       45.28,
+       396,
+       null
+      ],
+      [
+       "07-21",
+       0.0,
+       3,
+       null
+      ]
+     ]
+    }
+   ],
+   "freq7": [
+    {
+     "name": "SA - Traffic Kopos - Calls",
+     "frequency": 2.37,
+     "retargeting": false
+    },
+    {
+     "name": "SA - Vilniaus Džiazas - Traffic Web",
+     "frequency": 1.82,
+     "retargeting": false
+    },
+    {
+     "name": "SA - Namas su baseinu (V. dalis) - Traffic Web",
+     "frequency": 1.36,
+     "retargeting": false
+    }
+   ],
+   "delivery_issues": [
+    {
+     "entity": "adset",
+     "name": "INT Solds IG Reels",
+     "parent_active": false,
+     "message": "delivery status: error / all_ads_in_error (campaign paused)"
+    },
+    {
+     "entity": "adset",
+     "name": "LAL Solds IG Reels",
+     "parent_active": false,
+     "message": "delivery status: error / all_ads_in_error (campaign paused)"
+    }
+   ],
+   "account_errors": []
+  },
+  {
+   "name": "Solds x RO16",
+   "account_id": "1210331371269787",
+   "currency": "EUR",
+   "tier": "auto",
+   "targets": {},
+   "campaign_types": [
+    "traffic"
+   ],
+   "campaigns": [
+    {
+     "name": "RO16 Traffic - Calls",
+     "objective": "LINK_CLICKS",
+     "result_type": "Phone calls placed",
+     "active": true,
+     "days": [
+      [
+       "06-19",
+       9.08,
+       0,
+       null
+      ],
+      [
+       "06-20",
+       9.79,
+       1,
+       null
+      ],
+      [
+       "06-21",
+       10.44,
+       2,
+       null
+      ],
+      [
+       "06-22",
+       8.95,
+       1,
+       null
+      ],
+      [
+       "06-23",
+       10.64,
+       2,
+       null
+      ],
+      [
+       "06-24",
+       10.92,
+       1,
+       null
+      ],
+      [
+       "06-25",
+       9.73,
+       0,
+       null
+      ],
+      [
+       "06-26",
+       9.01,
+       1,
+       null
+      ],
+      [
+       "06-27",
+       9.88,
+       1,
+       null
+      ],
+      [
+       "06-28",
+       10.79,
+       1,
+       null
+      ],
+      [
+       "06-29",
+       10.77,
+       0,
+       null
+      ],
+      [
+       "06-30",
+       10.94,
+       2,
+       null
+      ],
+      [
+       "07-01",
+       10.37,
+       0,
+       null
+      ],
+      [
+       "07-02",
+       9.25,
+       1,
+       null
+      ],
+      [
+       "07-03",
+       8.42,
+       1,
+       null
+      ],
+      [
+       "07-04",
+       9.15,
+       0,
+       null
+      ],
+      [
+       "07-05",
+       10.22,
+       0,
+       null
+      ],
+      [
+       "07-06",
+       9.41,
+       0,
+       null
+      ],
+      [
+       "07-07",
+       9.52,
+       0,
+       null
+      ],
+      [
+       "07-08",
+       9.97,
+       0,
+       null
+      ],
+      [
+       "07-09",
+       10.8,
+       0,
+       null
+      ],
+      [
+       "07-10",
+       7.94,
+       0,
+       null
+      ],
+      [
+       "07-11",
+       11.98,
+       1,
+       null
+      ],
+      [
+       "07-12",
+       11.56,
+       1,
+       null
+      ],
+      [
+       "07-13",
+       8.16,
+       1,
+       null
+      ],
+      [
+       "07-14",
+       9.35,
+       2,
+       null
+      ],
+      [
+       "07-15",
+       10.99,
+       0,
+       null
+      ],
+      [
+       "07-16",
+       9.02,
+       2,
+       null
+      ],
+      [
+       "07-17",
+       9.64,
+       0,
+       null
+      ],
+      [
+       "07-18",
+       10.45,
+       0,
+       null
+      ],
+      [
+       "07-19",
+       12.85,
+       2,
+       null
+      ],
+      [
+       "07-20",
+       9.28,
+       1,
+       null
+      ],
+      [
+       "07-21",
+       8.76,
+       1,
+       null
+      ],
+      [
+       "07-22",
+       7.91,
+       0,
+       null
+      ],
+      [
+       "07-23",
+       8.64,
+       1,
+       null
+      ]
+     ]
+    },
+    {
+     "name": "RO16 Leads",
+     "objective": "OUTCOME_LEADS",
+     "result_type": null,
+     "active": false,
+     "days": []
+    }
+   ],
+   "freq7": [
+    {
+     "name": "RO16 Traffic - Calls",
+     "frequency": 2.512563,
+     "retargeting": false
+    }
+   ],
+   "delivery_issues": [],
+   "account_errors": []
+  }
+ ]
+}
