@@ -60,11 +60,33 @@ case "$ARCH" in
   *) note "architecture: $ARCH (unrecognised — continuing anyway)" ;;
 esac
 
-command -v node >/dev/null 2>&1 || die "Node is not installed. Install Node 20 or newer, then re-run."
+if ! command -v node >/dev/null 2>&1; then
+  die "Node is not installed. Raspberry Pi OS does not ship it. Install Node 22:
+    curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+  Then re-run this script."
+fi
 NODE_MAJOR="$(node -p 'process.versions.node.split(".")[0]')"
 # even-terminal itself needs 18+; 20 is the floor for Claude Code.
 [[ "$NODE_MAJOR" -ge 20 ]] || die "Node $(node -v) is too old; use Node 20 or newer."
 note "node: $(node -v)"
+
+# A NodeSource install puts the global prefix under /usr, which this script
+# can't write to unprivileged — and `sudo npm -g` then leaves root-owned files
+# that break later updates. A user-owned prefix avoids both.
+NPM_PREFIX="$(npm config get prefix 2>/dev/null || echo /usr)"
+if [[ ! -w "$NPM_PREFIX" ]]; then
+  die "npm's global prefix ($NPM_PREFIX) is not writable by $USER.
+  Rather than running npm with sudo, give yourself a user-owned prefix:
+
+    mkdir -p ~/.npm-global
+    npm config set prefix ~/.npm-global
+    echo 'export PATH=~/.npm-global/bin:\$PATH' >> ~/.bashrc
+    source ~/.bashrc
+
+  Then re-run this script."
+fi
+note "npm prefix: $NPM_PREFIX"
 
 if ! command -v claude >/dev/null 2>&1; then
   die "Claude Code is not installed. On the Pi:
