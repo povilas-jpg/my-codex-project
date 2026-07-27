@@ -120,10 +120,6 @@ bash scripts/pi-setup.sh --dir ~/code/your-project
 See **[docs/GLASSES.md](docs/GLASSES.md)** — including the security note that
 even-terminal binds `0.0.0.0` regardless of `--tailscale`.
 
-`bridge/` holds a [MentraOS](https://github.com/Mentra-Community/MentraOS)
-integration built on the text API above. Even's Agent Mode supersedes it for the
-G2; it stays because MentraOS covers other glasses and can be self-hosted.
-
 ## Configuration
 
 `claudepad.config.json` (looked up in the directory you launch from, or pass `--config`):

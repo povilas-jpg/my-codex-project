@@ -149,18 +149,69 @@ HTTP. Over a tailnet that's fine — WireGuard is already encrypting the link.
 | Claude Code won't install | 32-bit OS | `uname -m` says `armv7l` → reflash with the 64-bit image |
 | Output truncated mid-stream | something the 576×288 layout can't render | `even-terminal --verbose --log-file ./debug.log` and report it upstream |
 
-## What else is in this repo
+## One host, three inputs
 
-`even-terminal` covers the glasses. The rest of claude-pad is a separate way
-into the same idea:
+The point of putting this on a Pi is that **the Pi is the only machine running
+`claude`**. Everything else is an input device:
 
-- **the pad itself** — a browser macropad + live terminal for `claude`, on your
-  desktop or phone (see the [README](../README.md))
-- **the text API** (`/api/prompt`, `/api/events`, …) — the same turn-oriented,
-  paginated view of a session for any non-terminal client
-- **`bridge/`** — a [MentraOS](https://github.com/Mentra-Community/MentraOS)
-  integration for the G2. Superseded by Even's own Agent Mode for this use case;
-  kept because MentraOS runs on other glasses and can be self-hosted end to end.
+```
+              Raspberry Pi — the only Claude Code host
+              ~/.claude/     memory, skills, MCP, chat history
+              ~/code/        the project
+                      │
+               even-terminal :3456
+                      │
+      ┌───────────────┼───────────────┐
+   glasses          phone           laptop
+  (G2 + Even)    (Even app or      (ssh → claude)
+                  /api/prompt)
+```
 
-These can run alongside even-terminal on different ports, but they drive their
-own `claude` process — they are not views onto the same session.
+Because Claude Code keeps everything as files under `~/.claude` on the machine
+it runs on, a single host gives you one memory and one chat history for free:
+
+| | Where on the Pi |
+|---|---|
+| user memory | `~/.claude/CLAUDE.md` |
+| project memory | `<project>/CLAUDE.md` |
+| skills | `~/.claude/skills/` |
+| MCP servers | `~/.claude.json` |
+| chat history | `~/.claude/projects/<encoded-cwd>/*.jsonl` |
+
+even-terminal reads that same store — `dist/claude/provider.js` resolves
+`~/.claude/projects` directly, and it launches the agent with
+`settingSources: ["user", "project"]`. So a chat started on the laptop shows up
+in the glasses' session list, and vice versa.
+
+**The one rule:** use the same working directory everywhere. Chats are grouped
+by `cwd`, so `--cwd ~/code` and an ssh session in `~/other` produce two separate
+histories.
+
+Sessions are handed off, not shared live: `claude --resume` on the laptop and
+the app's session list on the glasses both read the same files, but each
+surface runs its own process. Start on one, continue on another.
+
+### What the glasses can and can't do
+
+even-terminal hardcodes the agent options (`dist/claude/session.js`):
+
+```js
+model: "claude-opus-4-6"
+maxTurns: 50
+permissionMode: "acceptEdits"
+allowedTools: [Read, Edit, Glob, Grep, Agent, WebSearch, WebFetch,
+               TaskOutput, ExitPlanMode, ListMcpResources, ReadMcpResource]
+```
+
+Anything outside that list — `Bash`, `Write`, and **every MCP tool** — raises a
+permission prompt on the glasses. Without an R1 ring you cannot answer those, so
+in practice the glasses are for reading, asking and editing; shell work and MCP
+queries belong on the laptop over ssh, against the same Pi and the same memory.
+
+Until the ring arrives, answer prompts over HTTP:
+
+```bash
+curl -X POST http://100.x.y.z:3456/api/permission-response \
+  -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' \
+  -d '{"sessionId":"<id>","decision":"allow"}'
+```
