@@ -1,218 +1,166 @@
-# Claude on Even Realities G2
+# Claude Code on Even Realities G2
 
-Talk to Claude Code through your glasses, with the session running on a
-Raspberry Pi you reach from anywhere over Tailscale.
+Claude Code on your glasses, running on a Raspberry Pi you reach from anywhere
+over Tailscale.
 
 ```
-   G2 glasses  (mic · touchpad · 5-line HUD)
-        ⇅ BLE
-   phone  (MentraOS app running the miniapp)
-        ⇅ HTTPS over your tailnet — never the public internet
-   claude-pad on the Pi
-        ⇅ PTY
-   the real `claude` CLI  ← your Claude subscription, no API key
+   G2 glasses (576×288 HUD)   R1 ring (input)
+        ↑ BLE                      ↓ BLE
+              Even app on your phone
+                       ⇅
+              your tailnet — no public exposure
+                       ⇅
+        even-terminal on the Pi  :3456
+                       ⇅
+              the real `claude` CLI  ← your subscription
 ```
 
-Nothing here uses the Agent SDK, so there is no per-token billing: the bridge
-types into the same interactive CLI you'd use at a terminal.
+The glasses side is **Even Realities' own tool**, not a third-party bridge:
+[`@evenrealities/even-terminal`](https://www.npmjs.com/package/@evenrealities/even-terminal).
+It spawns your `claude` binary, renders the output onto the G2 canvas, and turns
+R1 ring gestures into keystrokes. The Even app has a matching **Agent Mode**
+built in (Settings → Agent Mode → Add Host).
 
-## What runs where
+Because it wraps the interactive CLI, this runs on your Claude subscription —
+no API key, no per-token billing.
 
-| Piece | Where | What it does |
-|---|---|---|
-| `claude` | the Pi | the real CLI, logged into your account |
-| claude-pad | the Pi | owns the PTY, exposes the WebSocket + text API |
-| bridge | phone (miniapp) or the Pi (cloud adapter) | speech in, HUD pages out |
-| MentraOS app | phone | BLE link to the glasses |
+## Setup
 
-## 1. Set up the Pi
+### 1. Prepare the Pi
 
-You need a 64-bit Raspberry Pi OS on a Pi 4 or 5. 4GB RAM is comfortable; 2GB
-works but swaps. A 32-bit install will not work — Claude Code is 64-bit only.
+64-bit Raspberry Pi OS on a Pi 4 or 5. 4GB RAM is comfortable, 2GB swaps. A
+32-bit install will not work — check with `uname -m`, which must say `aarch64`.
 
 ```bash
 # on the Pi
-sudo apt-get update && sudo apt-get install -y build-essential python3
-# Node 20+ (nodesource, or your preferred method)
 npm install -g @anthropic-ai/claude-code
-claude          # sign in once, interactively — this is the only manual step
+claude          # sign in once, interactively — the only manual step
 ```
 
-`build-essential` and `python3` are not optional: node-pty compiles a native
-addon and the failure without them is cryptic.
-
-Then, from a checkout of this repo on the Pi:
+### 2. Run the setup script
 
 ```bash
 bash scripts/pi-setup.sh --dir ~/code/your-project
 ```
 
-That script checks the prerequisites, installs and brings up Tailscale, binds
-claude-pad **to the tailnet address only**, provisions a stable access token,
-and installs a systemd user service (with lingering enabled, so it survives
-logout and reboot).
+It checks the prerequisites, installs `even-terminal` and Tailscale, provisions
+a token that survives restarts, and installs a lingering systemd user service so
+the whole thing comes back after a reboot. Upstream's docs assume a laptop you
+type a command on and stop there; the always-on part is what this adds.
 
-It prints the URL and token at the end. Both are also recoverable later:
+Install Tailscale on your phone too, and sign into the same tailnet. That's what
+makes it work away from home — the phone is the link between the glasses and the
+Pi, so the phone is what needs to reach it.
 
-```bash
-cat ~/.config/claude-pad/token
-systemctl --user status claude-pad
-journalctl --user -u claude-pad -f
-```
+### 3. Pair it in the Even app
 
-### Why the tailnet and not a public URL
+Settings → **Agent Mode** → Add Host, then fill in what the script printed:
 
-The pad drives a real shell on the Pi. Anyone who can reach it and holds the
-token can run commands there. Tailscale means the port is not exposed to the
-internet at all — there is nothing to find and nothing to brute-force. The
-setup script never enables `tailscale funnel`, and warns if it finds funnel
-already serving something on that machine.
-
-Add your phone to the same tailnet (install Tailscale from the App Store /
-Play Store and sign in) and it will reach the Pi from any network.
-
-## 2. Set up the glasses
-
-Two adapters, same backend. Pick one.
-
-### Miniapp — recommended
-
-A JS bundle that runs inside the MentraOS app on your phone and drives the
-glasses over BLE. **Nothing crosses a third-party server**: the phone is on
-your tailnet and talks to the Pi directly.
-
-The catch: `@mentra/miniapp` is still pre-release. It is not on npm — it lives
-on the MentraOS repo's `mentra-miniapp-sdk` branch and resolves as a `file:`
-dependency.
-
-```bash
-git clone -b mentra-miniapp-sdk https://github.com/Mentra-Community/MentraOS
-cd bridge
-npm install
-npm link ../MentraOS/sdk/miniapp ../MentraOS/sdk/miniapp-cli
-npx mentra-miniapp dev
-```
-
-Then set the pad URL and token on the miniapp's settings screen.
-
-`bridge/src/miniapp/main.ts` is the only file that touches that SDK, and it
-imports it dynamically — so if the API shifts, that's the one file to fix.
-
-### Cloud adapter — the stable fallback
-
-Uses the published `@mentra/sdk`. Works today, but transcripts and Claude's
-replies transit MentraOS Cloud, and it needs a **publicly reachable** HTTPS
-URL for the webhook (Tailscale Funnel, or a tunnel of your choice).
-
-```bash
-cd bridge
-npm install
-export MENTRA_PACKAGE_NAME=com.yourname.claude   # must match console.mentra.glass
-export MENTRA_API_KEY=...
-export CLAUDE_PAD_URL=http://your-pi.tail1234.ts.net:7433
-export CLAUDE_PAD_TOKEN=...
-npm run dev:cloud
-```
-
-Register the app at [console.mentra.glass](https://console.mentra.glass) with
-your public URL, then launch it from the Mentra app on your phone.
-
-## 3. Wearing it
-
-| Gesture | Does |
+| Field | Value |
 |---|---|
-| tap temple | arm the mic — speak, and it's sent when you stop |
-| tap (while reading) | next page |
-| swipe forward / back | page through a long reply |
-| tap (on a permission prompt) | approve |
-| long press | reject a prompt, or interrupt a running turn |
+| Host name | anything |
+| Agent setup | Claude Code |
+| Host | `100.x.y.z:3456` (your Pi's tailnet IP) |
+| Auth Token | the token from the script |
 
-Replies arrive as pages sized to the display, with a `2/5` counter when there's
-more. Long code blocks collapse to `[code: N lines]` rather than filling the
-lens — read those on a real screen.
+Tap **Probe and Save**.
 
-## Security model
+The scan icon in the top right takes a QR code instead, which `even-terminal`
+prints at startup. Under systemd that goes to the journal, so the easiest way to
+get it is to run the tool in the foreground once — the script prints the exact
+command for that.
 
-Read this part.
+## Running it
 
-**Push-to-talk is on by default and you should leave it on.** The mic is only
-live between an explicit tap and the end of your sentence. With it off
-(`GLASSES_PUSH_TO_TALK=false`), anyone talking near you is typing into a shell
-on your Pi.
+```bash
+systemctl --user status even-terminal
+systemctl --user restart even-terminal
+journalctl --user -u even-terminal -f
+```
 
-**Keep permission prompts on.** Do not run the pad's `claude` with
-`--dangerously-skip-permissions`. The whole point of the approve/reject gesture
-is that you stay in the loop for anything destructive — and on a HUD you are
-reviewing a one-line summary, not a full diff, so the prompts matter more here
-than at a terminal, not less.
+Token and config live in `~/.config/even-terminal/` (mode 600). Rotate the token
+by deleting `token` and re-running the setup script — you'll need to update the
+host entry in the app.
+
+## Before you have the R1 ring
+
+`even-terminal` describes input entirely as ring gestures, so without the R1 you
+can see output but not steer it from the glasses. Its HTTP API works regardless,
+so you can drive the same session from a phone browser, a shell, or a shortcut:
+
+```bash
+# send a prompt
+curl -X POST http://100.x.y.z:3456/api/prompt \
+  -H "Authorization: Bearer $TOKEN" \
+  -H 'Content-Type: application/json' \
+  -d '{"text":"what changed in the last commit?"}'
+
+# watch the session
+curl -N "http://100.x.y.z:3456/api/events?token=$TOKEN"
+
+# answer a permission prompt
+curl -X POST http://100.x.y.z:3456/api/permission-response \
+  -H "Authorization: Bearer $TOKEN" \
+  -H 'Content-Type: application/json' \
+  -d '{"sessionId":"<id>","decision":"allow"}'
+```
+
+Other endpoints: `/api/status`, `/api/info`, `/api/sessions`,
+`/api/sessions/:id/history`, `/api/interrupt`, `/api/messages`. Auth is
+`Authorization: Bearer <token>` or `?token=`.
+
+## Security
+
+**even-terminal binds `0.0.0.0`.** `--tailscale` only changes the address it
+advertises and encodes in the QR code — the listener itself accepts connections
+on every interface the Pi has. It is token-protected, but it is listening on
+your Wi-Fi and Ethernet too, not only the tailnet.
+
+If the Pi sits on untrusted Wi-Fi, lock the port to the tailnet:
+
+```bash
+bash scripts/pi-setup.sh --dir ~/code/your-project --firewall
+```
+
+That needs `ufw` already enabled. The script will not enable a firewall for you
+— doing that over SSH is a good way to lock yourself out of the Pi.
+
+**The token is a password.** Anyone who holds it and can reach the port drives
+Claude Code on your Pi.
+
+**Keep permission prompts on.** Don't run the agent with
+`--dangerously-skip-permissions`. On a 5-line display you're approving a summary,
+not a diff, so the prompts matter more here than at a terminal, not less.
 
 **Scope the working directory.** `--dir` pins which project the session can
 touch. Point it at one project, not at `~`.
 
-**The token is a password.** It is stable across restarts by design, stored
-0600 at `~/.config/claude-pad/token`, and passed to systemd through an
-`EnvironmentFile` because unit files are world-readable. Rotate it by deleting
-that file and re-running the setup script.
-
-**What Mentra sees**, if you use the cloud adapter: your speech goes to their
-relay and on to a third-party speech-to-text provider (Soniox), and Claude's
-replies pass back through the relay to reach the lens. Their privacy notice
-says raw audio isn't retained and transcripts aren't stored. The miniapp path
-avoids the relay entirely — only speech-to-text is shared.
-
-## The text API
-
-The bridge is a client of a general-purpose API, so anything else can drive the
-same session — a watch, a script, a different pair of glasses.
-
-| Endpoint | Does |
-|---|---|
-| `POST /api/prompt` | `{text, submit?}` → `{turnId}` |
-| `POST /api/key` | `{key}` — approve, reject, interrupt |
-| `POST /api/new` | start a fresh conversation |
-| `GET /api/state` | status, session, latest reply as pages |
-| `GET /api/events` | SSE: state, replies, tool use, turn completion |
-
-`?columns=40&lines=5` sets the wrapping geometry. Auth is the pad's token, as
-`?token=`, `Authorization: Bearer`, or `X-Claude-Pad-Token`.
-
-Replies come from Claude Code's own JSONL transcripts, not from scraping the
-terminal, so what you get is the prose Claude actually wrote.
-
-```bash
-curl -s -X POST http://pi.tail1234.ts.net:7433/api/prompt \
-  -H "Authorization: Bearer $CLAUDE_PAD_TOKEN" \
-  -H 'Content-Type: application/json' \
-  -d '{"text":"what changed in the last commit?"}'
-
-curl -sN "http://pi.tail1234.ts.net:7433/api/events?columns=40&lines=5" \
-  -H "Authorization: Bearer $CLAUDE_PAD_TOKEN"
-```
+**On iOS**, the Even app couldn't do HTTPS as of 2.2.1, so this runs as plain
+HTTP. Over a tailnet that's fine — WireGuard is already encrypting the link.
 
 ## Troubleshooting
 
-**Nothing on the lens.** Check the pad is up (`systemctl --user status
-claude-pad`) and that the phone is on the tailnet (`tailscale status` on the
-Pi should list it). The bridge logs each reconnect attempt.
+| Symptom | Cause | Fix |
+|---|---|---|
+| "Server unreachable" in the app | phone and Pi on different transports | both on Tailscale, or both on the same Wi-Fi |
+| Host stops working after a reboot | token rotated | the setup script pins `--token`; check `~/.config/even-terminal/token` |
+| `EADDRINUSE :3456` | a second even-terminal is running | `systemctl --user stop even-terminal`, or use `--port` |
+| `command not found: claude` | not on the service's PATH | `which claude`; the unit uses an absolute path for even-terminal, so check claude too |
+| Claude Code won't install | 32-bit OS | `uname -m` says `armv7l` → reflash with the 64-bit image |
+| Output truncated mid-stream | something the 576×288 layout can't render | `even-terminal --verbose --log-file ./debug.log` and report it upstream |
 
-**Speech does nothing.** Push-to-talk: tap the temple pad first. The HUD shows
-"Listening…" when the mic is armed.
+## What else is in this repo
 
-**Replies never arrive but the terminal shows them.** The tailer follows the
-session id reported by the pad's hooks. With `--no-hooks` it falls back to the
-most recently modified transcript in the project, which is wrong if you have
-several sessions going. Drop `--no-hooks`.
+`even-terminal` covers the glasses. The rest of claude-pad is a separate way
+into the same idea:
 
-**`npm install` fails on node-pty.** Missing `build-essential` / `python3`, or
-Node older than 20.
+- **the pad itself** — a browser macropad + live terminal for `claude`, on your
+  desktop or phone (see the [README](../README.md))
+- **the text API** (`/api/prompt`, `/api/events`, …) — the same turn-oriented,
+  paginated view of a session for any non-terminal client
+- **`bridge/`** — a [MentraOS](https://github.com/Mentra-Community/MentraOS)
+  integration for the G2. Superseded by Even's own Agent Mode for this use case;
+  kept because MentraOS runs on other glasses and can be self-hosted end to end.
 
-**Claude Code won't install on the Pi.** Check `uname -m` — `armv7l` means a
-32-bit OS. Reflash with the 64-bit image.
-
-## Verifying the pipeline without glasses
-
-```bash
-npm test              # unit suite, incl. formatter, tailer, API, bridge
-npm run test:smoke    # boots the real server against a stub claude and
-                      # drives one full turn, printing the first HUD page
-```
+These can run alongside even-terminal on different ports, but they drive their
+own `claude` process — they are not views onto the same session.

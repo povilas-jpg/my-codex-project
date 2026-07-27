@@ -105,18 +105,24 @@ emulator can drive the same session:
 Replies come from Claude Code's own JSONL transcripts rather than by scraping
 ANSI out of the PTY, so what a client receives is what Claude actually wrote.
 
-`bridge/` uses this to put Claude on **Even Realities G2** glasses — speak, and
-the answer lands on the lens; tap the temple pad to approve a permission prompt.
-Run the whole thing on a Raspberry Pi bound to your tailnet, reachable from
-anywhere and exposed to no one:
+### Glasses
+
+For **Even Realities G2**, the shortest path is Even's own Agent Mode plus their
+[`@evenrealities/even-terminal`](https://www.npmjs.com/package/@evenrealities/even-terminal)
+— not this repo. What this repo adds is the always-on host: a Raspberry Pi on
+your tailnet, as a systemd service that survives reboots, with a token that
+doesn't rotate out from under the app.
 
 ```bash
 bash scripts/pi-setup.sh --dir ~/code/your-project
 ```
 
-See **[docs/GLASSES.md](docs/GLASSES.md)** for the Pi setup, the two glasses
-adapters, and the security model — the short version being that a voice channel
-into a real shell earns push-to-talk and permission prompts, both on by default.
+See **[docs/GLASSES.md](docs/GLASSES.md)** — including the security note that
+even-terminal binds `0.0.0.0` regardless of `--tailscale`.
+
+`bridge/` holds a [MentraOS](https://github.com/Mentra-Community/MentraOS)
+integration built on the text API above. Even's Agent Mode supersedes it for the
+G2; it stays because MentraOS covers other glasses and can be self-hosted.
 
 ## Configuration
 
