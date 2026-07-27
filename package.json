@@ -1,7 +1,7 @@
 {
   "name": "claude-pad",
   "version": "0.1.0",
-  "description": "A Codex-Micro-style virtual macropad + live web terminal for Claude Code: 15 big keys, status LEDs, a reasoning dial, push-to-talk, and a searchable chat browser — driving the real claude CLI on your subscription.",
+  "description": "A Codex-Micro-style virtual macropad + live web terminal for Claude Code: 15 big keys, status LEDs, a reasoning dial, push-to-talk, and a searchable chat browser \u2014 driving the real claude CLI on your subscription.",
   "type": "module",
   "license": "MIT",
   "bin": {
@@ -20,6 +20,7 @@
     "start": "node bin/claude-pad.js",
     "test": "vitest run",
     "test:e2e": "npm run build:web && playwright test",
+    "test:smoke": "tsx scripts/text-api-smoke.ts",
     "typecheck": "tsc -p tsconfig.server.json --noEmit && tsc -p web/tsconfig.json --noEmit"
   },
   "dependencies": {

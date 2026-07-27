@@ -14,6 +14,8 @@ import { writeHookSettingsFile } from "./hooks-settings.js";
 import { PtyManager } from "./pty-manager.js";
 import { SessionStore } from "./session-store.js";
 import { StatusReducer } from "./status-reducer.js";
+import { registerTextApi } from "./text-api.js";
+import { TranscriptTailer } from "./transcript-tailer.js";
 import { registerWs } from "./ws-handler.js";
 
 interface CliArgs {
@@ -139,6 +141,9 @@ async function main(): Promise<void> {
   const pty = new PtyManager({ claudeBin: args.claudeBin, cwd: args.dir, extraArgs });
   const status = new StatusReducer();
   const store = new SessionStore(args.dir);
+  // Without hooks nothing ever reports the session id, so fall back to
+  // following whichever transcript in this project was touched last.
+  const tailer = new TranscriptTailer(store.projectsDir, { followNewest: args.noHooks });
 
   const session: SessionInfo = {
     cwd: args.dir,
@@ -163,9 +168,18 @@ async function main(): Promise<void> {
     sessionInfo: () => session,
   });
 
+  registerTextApi(app, {
+    pty,
+    status,
+    tailer,
+    token,
+    sessionInfo: () => session,
+  });
+
   registerHookReceiver(app, {
     status,
     onSessionId: (id) => {
+      tailer.setSession(id);
       if (session.sessionId !== id) {
         session.sessionId = id;
         hub.broadcast({ type: "session_info", session });
@@ -190,6 +204,7 @@ async function main(): Promise<void> {
 
   await app.listen({ port: args.port, host: args.host });
   pty.start();
+  tailer.start();
 
   const urlToken = token ? `?token=${token}` : "";
   console.log(`\nclaude-pad ready`);
@@ -203,6 +218,7 @@ async function main(): Promise<void> {
   }
 
   const shutdown = () => {
+    tailer.stop();
     pty.stop();
     void app.close().then(() => process.exit(0));
   };
