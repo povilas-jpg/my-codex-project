@@ -2,6 +2,7 @@ import { randomUUID } from "node:crypto";
 import type { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 import type { PadStatus, SessionInfo } from "../../shared/protocol.js";
+import type { PadEvent, TurnStatus } from "../../shared/text-protocol.js";
 import { sequenceFor } from "./keymap.js";
 import type { PtyManager } from "./pty-manager.js";
 import type { StatusReducer } from "./status-reducer.js";
@@ -37,7 +38,7 @@ export interface TurnView {
   prompt: string;
   startedAt: number;
   endedAt?: number;
-  status: "working" | "waiting" | "done";
+  status: TurnStatus;
   /** Every assistant text block seen since the prompt was submitted. */
   replies: string[];
 }
@@ -65,21 +66,6 @@ const keySchema = z.object({
 /** SSE heartbeat, so idle connections aren't reaped by proxies or phone radios. */
 const KEEPALIVE_MS = 20_000;
 
-type SseEvent =
-  | { type: "state"; status: PadStatus; detail?: string; session: SessionInfo }
-  | {
-      type: "reply";
-      turnId: string | null;
-      text: string;
-      plain: string;
-      summary: string;
-      pages: string[];
-      at: number;
-    }
-  | { type: "tool"; name: string; target?: string; at: number }
-  | { type: "turn_end"; turnId: string; status: "done" }
-  | { type: "needs_input"; detail?: string };
-
 export function registerTextApi(app: FastifyInstance, deps: TextApiDeps): void {
   const clients = new Set<FastifyReply>();
   let turn: TurnView | null = null;
@@ -99,7 +85,7 @@ export function registerTextApi(app: FastifyInstance, deps: TextApiDeps): void {
     return false;
   };
 
-  const broadcast = (event: SseEvent) => {
+  const broadcast = (event: PadEvent) => {
     const frame = `data: ${JSON.stringify(event)}\n\n`;
     for (const reply of clients) {
       try {

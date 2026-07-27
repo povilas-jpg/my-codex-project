@@ -88,6 +88,36 @@ Phone **mic** needs HTTPS (browser rule). Options, easiest first:
 
 Without HTTPS the pad still fully works on the phone — only the Talk key is disabled.
 
+## Smart glasses, and hosting it somewhere always-on
+
+The pad also exposes a **text-mode API** — post a prompt, get Claude's prose back
+already wrapped into pages for a small display — so clients without a terminal
+emulator can drive the same session:
+
+| Endpoint | Does |
+|---|---|
+| `POST /api/prompt` | `{text, submit?}` → `{turnId}` |
+| `POST /api/key` | approve · reject · interrupt, without a keyboard |
+| `POST /api/new` | start a fresh conversation |
+| `GET /api/state` | status, session, latest reply as pages |
+| `GET /api/events` | SSE: state, replies, tool use, turn completion |
+
+Replies come from Claude Code's own JSONL transcripts rather than by scraping
+ANSI out of the PTY, so what a client receives is what Claude actually wrote.
+
+`bridge/` uses this to put Claude on **Even Realities G2** glasses — speak, and
+the answer lands on the lens; tap the temple pad to approve a permission prompt.
+Run the whole thing on a Raspberry Pi bound to your tailnet, reachable from
+anywhere and exposed to no one:
+
+```bash
+bash scripts/pi-setup.sh --dir ~/code/your-project
+```
+
+See **[docs/GLASSES.md](docs/GLASSES.md)** for the Pi setup, the two glasses
+adapters, and the security model — the short version being that a voice channel
+into a real shell earns push-to-talk and permission prompts, both on by default.
+
 ## Configuration
 
 `claudepad.config.json` (looked up in the directory you launch from, or pass `--config`):
@@ -96,12 +126,14 @@ Without HTTPS the pad still fully works on the phone — only the Talk key is di
 { "autoSubmitVoice": true }
 ```
 
-CLI flags: `--dir <path>` · `--port <n>` (default 7433) · `--host <addr>` · `--claude-bin <path>` · `--config <path>` · `--no-hooks` (skip status hooks; LEDs fall back to output heuristics).
+CLI flags: `--dir <path>` · `--port <n>` (default 7433) · `--host <addr>` · `--claude-bin <path>` · `--config <path>` · `--no-hooks` (skip status hooks; LEDs fall back to output heuristics) · `--token <value>` (fixed access token, also read from `CLAUDE_PAD_TOKEN`; without it a new token is minted each start, which breaks long-running services across restarts).
 
 ## Development
 
 ```bash
 npm run dev        # tsx watch server (7433) + vite dev server (5173, proxies /ws)
+npm run test:smoke # boots the real server against a stub claude, drives one
+                   # full turn through the text API, prints the first HUD page
 npm test           # vitest unit suite (status reducer, keymap, session store, …)
 npm run test:e2e   # Playwright: builds the UI, boots a stub claude, drives the pad
 npm run typecheck

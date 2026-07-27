@@ -25,6 +25,7 @@ interface CliArgs {
   claudeBin: string;
   configPath?: string;
   noHooks: boolean;
+  token?: string;
 }
 
 function parseArgs(argv: string[]): CliArgs {
@@ -61,6 +62,9 @@ function parseArgs(argv: string[]): CliArgs {
       case "--no-hooks":
         args.noHooks = true;
         break;
+      case "--token":
+        args.token = next();
+        break;
       case "--help":
       case "-h":
         console.log(
@@ -70,7 +74,9 @@ function parseArgs(argv: string[]): CliArgs {
             `  --host <addr>        bind address (default: 127.0.0.1; non-loopback enables token auth)\n` +
             `  --claude-bin <path>  claude executable (default: claude on PATH)\n` +
             `  --config <path>      claudepad.config.json path\n` +
-            `  --no-hooks           don't wire status hooks (LEDs fall back to heuristics)\n`,
+            `  --no-hooks           don't wire status hooks (LEDs fall back to heuristics)\n` +
+            `  --token <value>      fixed access token (else a new one each start;\n` +
+            `                       also read from CLAUDE_PAD_TOKEN)\n`,
         );
         process.exit(0);
     }
@@ -127,10 +133,18 @@ async function main(): Promise<void> {
       : undefined),
   );
 
-  const token =
-    args.host === "127.0.0.1" || args.host === "localhost" || args.host === "::1"
-      ? undefined
-      : randomBytes(16).toString("hex");
+  // Loopback needs no token; anything else does, since reaching the pad means
+  // driving a terminal. A fixed token can be supplied so that a long-running
+  // service (systemd on a Pi, say) keeps the same one across restarts —
+  // otherwise every reboot would silently invalidate every configured client.
+  const isLoopback =
+    args.host === "127.0.0.1" || args.host === "localhost" || args.host === "::1";
+  const explicitToken = args.token ?? process.env.CLAUDE_PAD_TOKEN;
+  if (explicitToken !== undefined && explicitToken.length < 16) {
+    console.error("error: --token must be at least 16 characters");
+    process.exit(1);
+  }
+  const token = explicitToken ?? (isLoopback ? undefined : randomBytes(16).toString("hex"));
 
   const extraArgs: string[] = [];
   if (!args.noHooks) {
@@ -212,8 +226,14 @@ async function main(): Promise<void> {
   console.log(`  claude  : ${claudeVersion}`);
   console.log(`  local   : http://localhost:${args.port}/${urlToken}`);
   if (token) {
-    const lan = lanAddress();
-    if (lan) console.log(`  network : http://${lan}:${args.port}/${urlToken}`);
+    // When bound to a specific address (a tailnet IP, say), that address is
+    // the one that works — the first LAN interface may not even be reachable.
+    const reachable = isLoopback
+      ? undefined // already printed as "local"
+      : args.host === "0.0.0.0" || args.host === "::"
+        ? lanAddress()
+        : args.host;
+    if (reachable) console.log(`  network : http://${reachable}:${args.port}/${urlToken}`);
     console.log(`  note    : token required — anyone with the URL controls this terminal`);
   }
 
